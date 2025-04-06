@@ -181,7 +181,11 @@
       color: white;
       border: none;
       cursor: pointer;
-      user-select: none; /* Запрещает выделение */
+      /* Запрет выделения текста (кроссбраузерно) */
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
     /* Адаптивность для узких экранов */
     @media (max-width: 600px) {
@@ -227,25 +231,25 @@
 
       <div id="custom-settings">
         <label>Длина ракетки (px): 
-          <input type="number" id="customPaddleHeight" value="100" min="1" max="800" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="16">
+          <input type="number" id="customPaddleHeight" value="100" min="1" max="800" required step="1">
         </label>
         <label>Ширина ракетки (px): 
-          <input type="number" id="customPaddleWidth" value="10" min="1" max="80" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="12">
+          <input type="number" id="customPaddleWidth" value="10" min="1" max="80" required step="1">
         </label>
         <label>Размер мяча (радиус, px): 
-          <input type="number" id="customBallSize" value="10" min="1" max="80" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="12">
+          <input type="number" id="customBallSize" value="10" min="1" max="80" required step="1">
         </label>
         <label>Ширина экрана (px): 
-          <input type="number" id="customCanvasWidth" value="800" min="200" max="5000" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="16">
+          <input type="number" id="customCanvasWidth" value="800" min="200" max="5000" required step="1">
         </label>
         <label>Высота экрана (px): 
-          <input type="number" id="customCanvasHeight" value="500" min="200" max="3500" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="16">
+          <input type="number" id="customCanvasHeight" value="500" min="200" max="3500" required step="1">
         </label>
         <label>Макс. очков: 
-          <input type="number" id="customMaxScore" value="5" min="1" max="10000" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="24">
+          <input type="number" id="customMaxScore" value="5" min="1" max="10000" required step="1">
         </label>
         <label>Очков за гол: 
-          <input type="number" id="customGoalPoints" value="1" min="1" max="10000" required step="1" pattern="\d+" inputmode="numeric" autocomplete="off" maxlength="16">
+          <input type="number" id="customGoalPoints" value="1" min="1" max="10000" required step="1">
         </label>
         <!-- Задаём скорость через селекты -->
         <label>Скорость мяча:
@@ -332,6 +336,18 @@
   </div>
 
   <script>
+    // Функция обновления UI для режима "С другом"
+    function updateOpponentUI() {
+      const opponent = document.getElementById('opponent').value;
+      if(opponent === 'friend'){
+        document.getElementById('friend-names').style.display = 'flex';
+        document.getElementById('rightControls').style.display = 'flex';
+      } else {
+        document.getElementById('friend-names').style.display = 'none';
+        document.getElementById('rightControls').style.display = 'none';
+      }
+    }
+
     // Ограничение ввода чисел по атрибутам
     document.querySelectorAll('input[type="number"]').forEach(input => {
       input.addEventListener('input', function() {
@@ -370,8 +386,10 @@
       const element = document.getElementById(id);
       localStorage.setItem(id, element.value);
     }
-    // При загрузке восстанавливаем значения для select и текстовых полей
+
+    // Единый обработчик загрузки страницы
     window.addEventListener('load', () => {
+      // Восстанавливаем значения для select и текстовых полей
       const selectIds = ['difficulty', 'opponent'];
       const textIds = ['player1Name', 'player2Name'];
       selectIds.forEach(id => {
@@ -386,15 +404,43 @@
           document.getElementById(id).value = saved;
         }
       });
+      // Восстанавливаем значения для custom-полей
+      const customFields = [
+        'customPaddleHeight',
+        'customPaddleWidth',
+        'customBallSize',
+        'customCanvasWidth',
+        'customCanvasHeight',
+        'customMaxScore',
+        'customGoalPoints',
+        'customBallSpeedMultiplier',
+        'customPlayerSpeedMultiplier'
+      ];
+      customFields.forEach(field => {
+        const saved = localStorage.getItem(field);
+        if (saved !== null) {
+          document.getElementById(field).value = saved;
+        }
+      });
+      // Если выбран режим "С другом", обновляем UI
+      updateOpponentUI();
       // Если сохранён выбранный режим "custom", показываем блок настроек
       if(document.getElementById('difficulty').value === 'custom'){
         document.getElementById('custom-settings').style.display = 'flex';
         document.getElementById('explanation').style.display = 'block';
       }
     });
-    // Слушатели для select и текстовых полей
-    document.getElementById('difficulty').addEventListener('change', () => { saveValue('difficulty'); });
-    document.getElementById('opponent').addEventListener('change', () => { saveValue('opponent'); });
+
+    // Обработчики событий для select и текстовых полей
+    document.getElementById('difficulty').addEventListener('change', () => { 
+      saveValue('difficulty'); 
+      document.getElementById('custom-settings').style.display = (document.getElementById('difficulty').value === 'custom') ? 'flex' : 'none';
+      document.getElementById('explanation').style.display = (document.getElementById('difficulty').value === 'custom') ? 'block' : 'none';
+    });
+    document.getElementById('opponent').addEventListener('change', () => {
+      saveValue('opponent');
+      updateOpponentUI();
+    });
     document.getElementById('player1Name').addEventListener('change', () => { saveValue('player1Name'); });
     document.getElementById('player2Name').addEventListener('change', () => { saveValue('player2Name'); });
 
@@ -453,59 +499,8 @@
     // Вероятность ошибки ИИ
     let errorChance = 0.43;
 
-    // Для замедления мяча через 4 секунды после касания (больше не используется)
+    // Для замедления мяча (не используется)
     let lastTouch = Date.now();
-
-    // Сохранение данных для custom-полей в localStorage
-    const customFields = [
-      'customPaddleHeight',
-      'customPaddleWidth',
-      'customBallSize',
-      'customCanvasWidth',
-      'customCanvasHeight',
-      'customMaxScore',
-      'customGoalPoints',
-      'customBallSpeedMultiplier',
-      'customPlayerSpeedMultiplier'
-    ];
-
-    window.addEventListener('load', () => {
-      customFields.forEach(field => {
-        const saved = localStorage.getItem(field);
-        if (saved !== null) {
-          document.getElementById(field).value = saved;
-        }
-      });
-    });
-
-    customFields.forEach(field => {
-      document.getElementById(field).addEventListener('change', function() {
-        localStorage.setItem(field, this.value);
-      });
-    });
-
-    difficultySelect.addEventListener('change', () => {
-      customSettings.style.display = (difficultySelect.value === 'custom') ? 'flex' : 'none';
-      explanation.style.display = (difficultySelect.value === 'custom') ? 'block' : 'none';
-    });
-
-    opponentSelect.addEventListener('change', () => {
-      friendNamesDiv.style.display = (opponentSelect.value === 'friend') ? 'flex' : 'none';
-      rightControls.style.display = (opponentSelect.value === 'friend') ? 'flex' : 'none';
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'w' || e.key === 'W') leftUpPressed = true;
-      if (e.key === 's' || e.key === 'S') leftDownPressed = true;
-      if (e.key === 'ArrowUp') upPressed = true;
-      if (e.key === 'ArrowDown') downPressed = true;
-    });
-    document.addEventListener('keyup', e => {
-      if (e.key === 'w' || e.key === 'W') leftUpPressed = false;
-      if (e.key === 's' || e.key === 'S') leftDownPressed = false;
-      if (e.key === 'ArrowUp') upPressed = false;
-      if (e.key === 'ArrowDown') downPressed = false;
-    });
 
     function setDifficulty(level) {
       switch(level) {
@@ -576,10 +571,8 @@
         canvasWidth = 800;
         canvasHeight = 500;
       }
-      // Устанавливаем внутренние размеры канваса
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
-      // Определяем вертикальное направление случайно, сохраняя постоянную скорость
       ballSpeedY = ballSpeedX * (Math.random() > 0.5 ? 1 : -1);
     }
 
@@ -590,10 +583,8 @@
       }
       menu.style.display = 'none';
       gameDiv.style.display = 'flex';
-
       countdownDiv.style.display = 'flex';
       countdownDiv.textContent = "НА СТАРТ!";
-
       setTimeout(() => { countdownDiv.textContent = "ВНИМАНИЕ!"; }, 1000);
       setTimeout(() => { countdownDiv.textContent = "МАРШ!"; }, 2000);
       setTimeout(() => {
@@ -614,19 +605,14 @@
       leftScore = rightScore = 0;
       gameOver = false;
       updateScoreboard();
-
       leftPaddleY = rightPaddleY = canvas.height / 2 - paddleHeight / 2;
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
-
       winScreen.style.display = 'none';
       lastTouch = Date.now();
-
-      // Масштабирование канваса для полного вмещения на экране устройства
       const scale = Math.min(window.innerWidth / canvas.width, window.innerHeight / canvas.height, 1);
       canvas.style.width = (canvas.width * scale) + 'px';
       canvas.style.height = (canvas.height * scale) + 'px';
-
       draw();
     }
 
@@ -658,20 +644,16 @@
     }
 
     function checkPaddleCollision() {
-      // Левая ракетка
       if (ballX - ballSize <= paddleThickness) {
         if (ballY >= leftPaddleY && ballY <= leftPaddleY + paddleHeight) {
-          // При попадании в левую ракетку, мяч отражается вправо, сохраняя свою скорость
           ballSpeedX = Math.abs(ballSpeedX);
           lastTouch = Date.now();
         }
       }
-      // Правая ракетка
       if (ballX + ballSize >= canvas.width - paddleThickness) {
         if (opponentSelect.value === 'ai' && Math.random() < errorChance) {
-          // Промах ИИ — ничего не меняется
+          // Промах ИИ
         } else if (ballY >= rightPaddleY && ballY <= rightPaddleY + paddleHeight) {
-          // При попадании в правую ракетку, мяч отражается влево, сохраняя свою скорость
           ballSpeedX = -Math.abs(ballSpeedX);
           lastTouch = Date.now();
         }
@@ -682,7 +664,6 @@
       ballX += ballSpeedX;
       ballY += ballSpeedY;
       if (ballY - ballSize <= 0 || ballY + ballSize >= canvas.height) {
-        // При столкновении с верхней или нижней границей, меняем направление по вертикали
         ballSpeedY = -ballSpeedY;
       }
       checkPaddleCollision();
@@ -702,7 +683,6 @@
     function resetBall() {
       ballX = canvas.width / 2;
       ballY = canvas.height / 2;
-      // После сброса мяч запускается в противоположном направлении, сохраняя постоянную скорость
       ballSpeedX = (ballSpeedX === 0) ? 1 : -ballSpeedX;
       ballSpeedY = ballSpeedX * (Math.random() > 0.5 ? 1 : -1);
       lastTouch = Date.now();
@@ -752,6 +732,20 @@
       checkWin();
       requestAnimationFrame(draw);
     }
+
+    // Управление с клавиатуры
+    document.addEventListener('keydown', e => {
+      if (e.key === 'w' || e.key === 'W') leftUpPressed = true;
+      if (e.key === 's' || e.key === 'S') leftDownPressed = true;
+      if (e.key === 'ArrowUp') upPressed = true;
+      if (e.key === 'ArrowDown') downPressed = true;
+    });
+    document.addEventListener('keyup', e => {
+      if (e.key === 'w' || e.key === 'W') leftUpPressed = false;
+      if (e.key === 's' || e.key === 'S') leftDownPressed = false;
+      if (e.key === 'ArrowUp') upPressed = false;
+      if (e.key === 'ArrowDown') downPressed = false;
+    });
   </script>
 </body>
 </html>
