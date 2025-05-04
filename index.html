@@ -22,6 +22,7 @@
     const BOT_TOKEN = '6537497957:AAHnaAc1x5qesBdNxOU9gQI27JdHvJ8IOMk';        // токен вашего бота от @BotFather
     const CURRENCY = 'XTR';                         // валюта Stars
     const AMOUNT   = 100000;                        // 1 звезда = 100000 nano‑units
+    const PROVIDER = 'STARS';
 
     document.getElementById('buy-btn').addEventListener('click', async () => {
       const btn = document.getElementById('buy-btn');
@@ -40,6 +41,7 @@
               title:       "1 лимит",
               description: "Покупка лимита за 1 Telegram Star",
               payload:     "buy_limit_" + Date.now(),
+              provider_token: PROVIDER,
               currency:       CURRENCY,
               prices:       [{ label: "1 лимит", amount: AMOUNT }]
             })
