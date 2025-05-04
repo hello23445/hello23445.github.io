@@ -2,19 +2,64 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Покупка лимита</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Купить лимит</title>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 40px; }
-    button {
+    #buy-btn {
       font-size: 18px; padding: 12px 24px;
       border: none; border-radius: 10px;
       background-color: #2AABEE; color: white; cursor: pointer;
     }
+    #message { margin-top: 20px; font-size: 16px; }
   </style>
 </head>
 <body>
-  <h1>Купить лимит за 1 Telegram Star</h1>
-  <button onclick="Telegram.WebApp.sendData('buy_limit')">Оплатить</button>
+  <h1>Купить 1 лимит за 1 Telegram Star</h1>
+  <button id="buy-btn">Оплатить 1 Telegram Star</button>
+  <div id="message"></div>
+
+  <script>
+    const BOT_TOKEN = '6537497957:AAHnaAc1x5qesBdNxOU9gQI27JdHvJ8IOMk';        // токен вашего бота от @BotFather
+    const CURRENCY = 'XTR';                         // валюта Stars
+    const AMOUNT   = 100000;                        // 1 звезда = 100000 nano‑units
+
+    document.getElementById('buy-btn').addEventListener('click', async () => {
+      const btn = document.getElementById('buy-btn');
+      const msg = document.getElementById('message');
+      btn.disabled = true;
+      msg.textContent = 'Генерируем счёт…';
+
+      try {
+        // вызываем Bot API: createInvoiceLink :contentReference[oaicite:1]{index=1}
+        const resp = await fetch(
+          `https://api.telegram.org/bot${BOT_TOKEN}/createInvoiceLink`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title:       "1 лимит",
+              description: "Покупка лимита за 1 Telegram Star",
+              payload:     "buy_limit_" + Date.now(),
+              currency:       CURRENCY,
+              prices:       [{ label: "1 лимит", amount: AMOUNT }]
+            })
+          }
+        );
+        const j = await resp.json();
+        if (j.ok && j.result && j.result.url) {
+          // подставляем полученную ссылку в кнопку
+          window.open(j.result.url, '_blank');
+          msg.textContent = '';
+        } else throw new Error('no url');
+      } catch (e) {
+        console.error(e);
+        msg.innerHTML = 
+          '❌ Ошибка при генерации счёта. ' +
+          'Связь с поддержкой: <a href="https://t.me/Clickerstart_bot" target="_blank">@Clickerstart_bot</a>';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
