@@ -10,7 +10,7 @@
       border: none; border-radius: 10px;
       background-color: #2AABEE; color: white; cursor: pointer;
     }
-    #message { margin-top: 20px; font-size: 16px; }
+    #message { margin-top: 20px; font-size: 16px; white-space: pre-wrap; text-align: left; display: inline-block; }
   </style>
 </head>
 <body>
@@ -19,45 +19,56 @@
   <div id="message"></div>
 
   <script>
-    const BOT_TOKEN = '6537497957:AAHnaAc1x5qesBdNxOU9gQI27JdHvJ8IOMk';        // токен вашего бота от @BotFather
-    const CURRENCY = 'XTR';                         // валюта Stars
-    const AMOUNT   = 100000;                        // 1 звезда = 100000 nano‑units
-    const PROVIDER = 'STARS';
+    const BOT_TOKEN = 'ВАШ_BOT_TOKEN_ЗДЕСЬ';    // токен бота
+    const CURRENCY  = 'XTR';                    // валюта Stars
+    const AMOUNT    = 100000;                   // 1 звезда = 100000 nano‑units
+
+    async function createInvoiceLink() {
+      const payload = 'buy_limit_' + Date.now();
+      const body = {
+        title:       "1 лимит",
+        description: "Покупка лимита за 1 Telegram Star",
+        payload:     payload,
+        // provider_token не нужен для Stars
+        currency:    CURRENCY,
+        prices:      [{ label: "1 лимит", amount: AMOUNT }]
+      };
+      console.log('>> Request body for createInvoiceLink:', body);
+      const resp = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/createInvoiceLink`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }
+      );
+      console.log('<< HTTP status:', resp.status, resp.statusText);
+      const j = await resp.json();
+      console.log('<< Response JSON:', j);
+      return j;
+    }
 
     document.getElementById('buy-btn').addEventListener('click', async () => {
       const btn = document.getElementById('buy-btn');
       const msg = document.getElementById('message');
       btn.disabled = true;
-      msg.textContent = 'Генерируем счёт…';
+      msg.textContent = 'Генерируем счёт…\n';
 
       try {
-        // вызываем Bot API: createInvoiceLink :contentReference[oaicite:1]{index=1}
-        const resp = await fetch(
-          `https://api.telegram.org/bot${BOT_TOKEN}/createInvoiceLink`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              title:       "1 лимит",
-              description: "Покупка лимита за 1 Telegram Star",
-              payload:     "buy_limit_" + Date.now(),
-              provider_token: PROVIDER,
-              currency:       CURRENCY,
-              prices:       [{ label: "1 лимит", amount: AMOUNT }]
-            })
-          }
-        );
-        const j = await resp.json();
+        const j = await createInvoiceLink();
         if (j.ok && j.result && j.result.url) {
-          // подставляем полученную ссылку в кнопку
+          msg.textContent = 'Открываем счёт…';
           window.open(j.result.url, '_blank');
-          msg.textContent = '';
-        } else throw new Error('no url');
+        } else {
+          const errorInfo = JSON.stringify(j, null, 2);
+          console.error('Ошибка createInvoiceLink:', j);
+          msg.textContent = 'Ошибка при создании счёта:\n' + errorInfo + 
+            '\n\nСвязь с поддержкой: https://t.me/Clickerstart_bot';
+        }
       } catch (e) {
-        console.error(e);
-        msg.innerHTML = 
-          '❌ Ошибка при генерации счёта. ' +
-          'Связь с поддержкой: <a href="https://t.me/Clickerstart_bot" target="_blank">@Clickerstart_bot</a>';
+        console.error('Fetch error:', e);
+        msg.textContent = 'Сетевая ошибка:\n' + e.toString() + 
+          '\n\nСвязь с поддержкой: https://t.me/Clickerstart_bot';
       } finally {
         btn.disabled = false;
       }
