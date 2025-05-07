@@ -13,21 +13,21 @@
         .hidden { display: none; }
         .btn { transition: background-color 0.3s; }
         .btn:hover { opacity: 0.9; }
+        select { color: #333; }
         @media (max-width: 640px) {
             .container { padding: 10px; }
-            input, button { font-size: 16px; }
+            input, button, select { font-size: 16px; }
         }
-        /* Dark theme styles */
         body.dark { background-color: #333; color: #f3f4f6; }
         body.dark .container { background-color: #444; }
         body.dark .btn { background-color: #555; }
         body.dark .error { color: #ff6666; }
         body.dark .success { color: #66ff66; }
+        body.dark select { color: #f3f4f6; background-color: #555; }
     </style>
 </head>
 <body>
     <div class="container bg-white rounded-lg shadow-lg p-6">
-        <!-- Screen 1: Telegram ID Input -->
         <div id="screen1" class="screen">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Enter Telegram ID</h2>
             <input id="telegramId" type="text" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded">
@@ -40,7 +40,6 @@
             <p id="error1" class="error hidden mt-2"></p>
         </div>
 
-        <!-- Screen 2: Channel Subscription -->
         <div id="screen2" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="subscribeToChannels">Subscribe to Channels</h2>
             <p id="subscriptionMessage" class="mb-4 text-center" data-translate="pleaseSubscribe">Please subscribe to the following channels:</p>
@@ -50,7 +49,6 @@
             <p id="error2" class="error hidden mt-2"></p>
         </div>
 
-        <!-- Screen 3: Main Menu -->
         <div id="screen3" class="screen hidden">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold" data-translate="mainMenu">Main Menu</h2>
@@ -61,7 +59,6 @@
             <button onclick="showPromoScreen()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Top Up Limits</button>
         </div>
 
-        <!-- Start Process: Username Input -->
         <div id="usernameScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterUsername">Enter Username</h2>
             <input id="usernameInput" type="text" placeholder="@username" class="w-full p-2 mb-4 border rounded">
@@ -70,7 +67,6 @@
             <p id="errorUsername" class="error hidden mt-2"></p>
         </div>
 
-        <!-- Gender Selection -->
         <div id="genderScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectGender">Select Gender of <span id="usernameDisplay"></span></h2>
             <button onclick="selectGender('male')" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="male">Male</button>
@@ -78,12 +74,10 @@
             <button onclick="backToUsername()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
         </div>
 
-        <!-- Loading Screen -->
         <div id="loadingScreen" class="screen hidden">
             <h2 id="loadingText" class="text-2xl font-bold mb-4 text-center" data-translate="loading">Loading...</h2>
         </div>
 
-        <!-- Chat Selection -->
         <div id="chatScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectChat">Select Chat</h2>
             <div id="chatButtons" class="mb-4"></div>
@@ -91,7 +85,6 @@
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
         </div>
 
-        <!-- Fake Chat Display -->
         <div id="fakeChatScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Fake Chat</h2>
             <div id="fakeChatContent" class="mb-4 p-4 border rounded"></div>
@@ -99,7 +92,6 @@
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
         </div>
 
-        <!-- Promo Code Screen -->
         <div id="promoScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterPromoCode">Enter Promo Code</h2>
             <input id="promoCode" type="text" placeholder="Promo Code" class="w-full p-2 mb-4 border rounded">
@@ -111,14 +103,12 @@
             <p id="promoMessage" class="mt-2"></p>
         </div>
 
-        <!-- No Limits Screen -->
         <div id="noLimitsScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="noLimitsAvailable">No Limits Available</h2>
             <p class="mb-4 text-center" data-translate="pleaseTopUp">You have no limits left. Please top up.</p>
             <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="backToMainMenu">Back to Main Menu</button>
         </div>
 
-        <!-- Settings Screen -->
         <div id="settingsScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="settings">Settings</h2>
             <div class="mb-4">
@@ -145,6 +135,12 @@
         const CHANNELS = ['@NickNaymes2Bot', '@messagesibotnews'];
         const CHAT_OPTIONS = ['Mom', 'Dad', 'Brother', 'Sister', 'Loved One'];
 
+        const PROMO_CODES = [
+            { code: 'TEST123', limits: 5 },
+            { code: 'PROMO1', limits: 10 },
+            { code: 'PROMO2', limits: 15 }
+        ];
+
         let userData = JSON.parse(localStorage.getItem('userData')) || {
             telegramId: null,
             verified: false,
@@ -154,6 +150,10 @@
             theme: 'light',
             language: 'en'
         };
+
+        if (typeof userData.limits !== 'number' || userData.limits < 0) {
+            userData.limits = 0;
+        }
 
         const translations = {
             en: {
@@ -338,7 +338,10 @@
         }
 
         function updateLimitsDisplay() {
-            document.getElementById('limitCount').textContent = userData.limits;
+            const limitCountElement = document.getElementById('limitCount');
+            if (limitCountElement) {
+                limitCountElement.textContent = userData.limits;
+            }
         }
 
         function startProcess() {
@@ -365,7 +368,10 @@
             clearError('errorUsername');
             userData.currentUsername = username;
             saveData();
-            document.getElementById('usernameDisplay').textContent = username;
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            if (usernameDisplay) {
+                usernameDisplay.textContent = username;
+            }
             showScreen('genderScreen');
         }
 
@@ -434,7 +440,7 @@
                 { sender: userData.currentUsername, text: `Ага, жду с нетерпением.` },
                 { sender: chatType, text: `Расскажешь потом, как прошло!` }
             ];
-            const messageCount = Math.floor(Math.random() * 5) + 3; // Random between 3 and 7 messages
+            const messageCount = Math.floor(Math.random() * 5) + 3;
             return messages.slice(0, messageCount);
         }
 
@@ -457,8 +463,9 @@
                 messageElement.textContent = translations[userData.language].promoCodeAlreadyUsed || 'This promo code has already been used!';
                 return;
             }
-            if (promoCode === 'TEST123') {
-                userData.limits += 5;
+            const promo = PROMO_CODES.find(p => p.code === promoCode);
+            if (promo) {
+                userData.limits += promo.limits;
                 userData.usedPromoCodes.push(promoCode);
                 saveData();
                 updateLimitsDisplay();
@@ -511,6 +518,7 @@
                 const key = element.getAttribute('data-translate');
                 element.textContent = translations[userData.language][key];
             });
+            updateLimitsDisplay();
         }
 
         initialize();
