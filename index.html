@@ -54,7 +54,10 @@
                 <h2 class="text-2xl font-bold" data-translate="mainMenu">Main Menu</h2>
                 <button onclick="showSettings()" class="bg-gray-500 text-white p-2 rounded btn" data-translate="settings">Settings</button>
             </div>
-            <p id="limitsDisplay" class="mb-4 text-center" data-translate="currentLimits">Current Limits: <span id="limitCount">0</span></p>
+            <p class="mb-4 text-center">
+                <span data-translate="currentLimits">Current Limits: </span>
+                <span id="limitCount">0</span>
+            </p>
             <button onclick="startProcess()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="start">Start</button>
             <button onclick="showPromoScreen()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Top Up Limits</button>
         </div>
@@ -133,7 +136,7 @@
     <script>
         const BOT_TOKEN = '7511624014:AAG9f_M4x9T8CQht5pT5zAu8e_5fRUao7m4';
         const CHANNELS = ['@NickNaymes2Bot', '@messagesibotnews'];
-        const CHAT_OPTIONS = ['Mom', 'Dad', 'Brother', 'Sister', 'Loved One'];
+        const CHAT_OPTIONS = ['mom', 'dad', 'brother', 'sister', 'lovedOne'];
 
         const PROMO_CODES = [
             { code: 'TEST123', limits: 5 },
@@ -185,13 +188,38 @@
                 noLimitsAvailable: 'No Limits Available',
                 pleaseTopUp: 'You have no limits left. Please top up.',
                 backToMainMenu: 'Back to Main Menu',
-                theme: 'Theme:',
-                language: 'Language:',
+                theme: 'Theme',
+                language: 'Language',
                 light: 'Light',
                 dark: 'Dark',
                 english: 'English',
                 russian: 'Russian',
-                apply: 'Apply'
+                apply: 'Apply',
+                invalidUsername: 'Please enter a valid username starting with @',
+                usernameAlreadyUsed: 'This username has already been checked',
+                invalidCode: 'Invalid code',
+                invalidPromoCode: 'Invalid promo code!',
+                promoCodeAlreadyUsed: 'This promo code has already been used!',
+                success: 'Success!',
+                mom: 'Mom',
+                dad: 'Dad',
+                brother: 'Brother',
+                sister: 'Sister',
+                lovedOne: 'Loved One',
+                lovedOneMale: 'Beloved (Male)',
+                lovedOneFemale: 'Beloved (Female)',
+                chatMessages: [
+                    'Hi {chatType}, how are you?',
+                    'Hi! I\'m fine, and you?',
+                    'I\'m fine too, decided to write!',
+                    'Cool, let\'s chat!',
+                    'What are your plans for the weekend?',
+                    'Maybe I\'ll hang out with friends, and you?',
+                    'Me too, thinking of going to the beach.',
+                    'Sounds great!',
+                    'Yeah, looking forward to it.',
+                    'Tell me how it went later!'
+                ]
             },
             ru: {
                 enterTelegramId: 'Введите Telegram ID',
@@ -222,13 +250,38 @@
                 noLimitsAvailable: 'Нет доступных лимитов',
                 pleaseTopUp: 'У вас закончились лимиты. Пожалуйста, пополните.',
                 backToMainMenu: 'Вернуться в главное меню',
-                theme: 'Тема:',
-                language: 'Язык:',
+                theme: 'Тема',
+                language: 'Язык',
                 light: 'Светлая',
                 dark: 'Темная',
                 english: 'Английский',
                 russian: 'Русский',
-                apply: 'Применить'
+                apply: 'Применить',
+                invalidUsername: 'Пожалуйста, введите действительное имя пользователя, начинающееся с @',
+                usernameAlreadyUsed: 'Это имя пользователя уже было проверено',
+                invalidCode: 'Неверный код',
+                invalidPromoCode: 'Неверный промокод!',
+                promoCodeAlreadyUsed: 'Этот промокод уже был использован!',
+                success: 'Успех!',
+                mom: 'Мама',
+                dad: 'Папа',
+                brother: 'Брат',
+                sister: 'Сестра',
+                lovedOne: 'Любимый/Любимая',
+                lovedOneMale: 'Любимый',
+                lovedOneFemale: 'Любимая',
+                chatMessages: [
+                    'Привет {chatType}, как дела?',
+                    'Привет! Всё нормально, а у тебя?',
+                    'Тоже нормально, решил написать!',
+                    'Круто, давай поболтаем!',
+                    'Какие планы на выходные?',
+                    'Может, с друзьями погуляю, а ты?',
+                    'Я тоже, думаю на пляж сходить.',
+                    'Звучит классно!',
+                    'Ага, жду с нетерпением.',
+                    'Расскажешь потом, как прошло!'
+                ]
             }
         };
 
@@ -240,6 +293,7 @@
             document.querySelectorAll('.screen').forEach(screen => screen.classList.add('hidden'));
             document.getElementById(screenId).classList.remove('hidden');
             translatePage();
+            updateLimitsDisplay();
         }
 
         function showError(elementId, message) {
@@ -264,7 +318,7 @@
         async function submitTelegramId() {
             const telegramId = document.getElementById('telegramId').value.trim();
             if (!telegramId) {
-                showError('error1', translations[userData.language].enterTelegramIdError || 'Please enter a Telegram ID');
+                showError('error1', translations[userData.language].enterTelegramId || 'Please enter a Telegram ID');
                 return;
             }
 
@@ -307,7 +361,7 @@
                 saveData();
                 checkSubscriptions(true);
             } else {
-                showError('error1', translations[userData.language].invalidCode || 'Invalid code');
+                showError('error1', translations[userData.language].invalidCode);
             }
         }
 
@@ -329,11 +383,10 @@
 
             if (allSubscribed) {
                 showScreen('screen3');
-                updateLimitsDisplay();
             } else {
                 showScreen('screen2');
                 if (!autoProceed) {
-                    showError('error2', translations[userData.language].pleaseSubscribe || 'Please subscribe to all channels');
+                    showError('error2', translations[userData.language].pleaseSubscribe);
                 }
             }
         }
@@ -352,21 +405,23 @@
         function submitUsername() {
             const username = document.getElementById('usernameInput').value.trim();
             if (!username.startsWith('@') || username.length < 2) {
-                showError('errorUsername', translations[userData.language].invalidUsername || 'Please enter a valid username starting with @');
+                showError('errorUsername', translations[userData.language].invalidUsername);
                 return;
             }
             if (userData.usedUsernames.includes(username)) {
-                showError('errorUsername', translations[userData.language].usernameAlreadyUsed || 'This username has already been checked');
+                showError('errorUsername', translations[userData.language].usernameAlreadyUsed);
                 return;
             }
             clearError('errorUsername');
             userData.currentUsername = username;
             saveData();
+            showScreen('genderScreen'); // Переключаем экран перед обновлением usernameDisplay
             const usernameDisplay = document.getElementById('usernameDisplay');
             if (usernameDisplay) {
-                usernameDisplay.textContent = username;
+                usernameDisplay.textContent = username; // Обновляем только после переключения экрана
+            } else {
+                console.error('Element with id "usernameDisplay" not found');
             }
-            showScreen('genderScreen');
         }
 
         function selectGender(gender) {
@@ -378,19 +433,9 @@
         function showLoadingScreen() {
             showScreen('loadingScreen');
             const loadingText = document.getElementById('loadingText');
-            loadingText.textContent = translations[userData.language].loading || 'Loading...';
+            loadingText.textContent = translations[userData.language].loading;
             setTimeout(() => {
-                loadingText.textContent = translations[userData.language].translating || 'Translating...';
-                setTimeout(() => {
-                    loadingText.textContent = translations[userData.language].displaying || 'Displaying...';
-                    setTimeout(() => {
-                        userData.limits -= 1;
-                        userData.usedUsernames.push(userData.currentUsername);
-                        saveData();
-                        updateLimitsDisplay();
-                        showChatScreen();
-                    }, 2100);
-                }, 2500);
+                showChatScreen();
             }, 3000);
         }
 
@@ -400,15 +445,15 @@
             chatButtons.innerHTML = '';
             const options = [...CHAT_OPTIONS];
             if (userData.currentGender === 'male') {
-                options[options.length - 1] = 'Любимая';
-            } else {
-                options[options.length - 1] = 'Любимый';
+                options[options.length - 1] = 'lovedOneMale';
+            } else if (userData.currentGender === 'female') {
+                options[options.length - 1] = 'lovedOneFemale';
             }
             const randomOptions = options.sort(() => Math.random() - 0.5).slice(0, Math.floor(Math.random() * options.length) + 1);
             for (const option of randomOptions) {
                 const button = document.createElement('button');
                 button.className = 'w-full bg-blue-500 text-white p-2 mb-2 rounded btn';
-                button.textContent = option;
+                button.textContent = translations[userData.language][option] || option;
                 button.onclick = () => showFakeChat(option);
                 chatButtons.appendChild(button);
             }
@@ -422,18 +467,13 @@
         }
 
         function generateFakeMessages(chatType) {
-            const messages = [
-                { sender: userData.currentUsername, text: `Привет ${chatType}, как дела?` },
-                { sender: chatType, text: `Привет! Всё нормально, а у тебя?` },
-                { sender: userData.currentUsername, text: `Тоже нормально, решил написать!` },
-                { sender: chatType, text: `Круто, давай поболтаем!` },
-                { sender: userData.currentUsername, text: `Какие планы на выходные?` },
-                { sender: chatType, text: `Может, с друзьями погуляю, а ты?` },
-                { sender: userData.currentUsername, text: `Я тоже, думаю на пляж сходить.` },
-                { sender: chatType, text: `Звучит классно!` },
-                { sender: userData.currentUsername, text: `Ага, жду с нетерпением.` },
-                { sender: chatType, text: `Расскажешь потом, как прошло!` }
-            ];
+            const messages = translations[userData.language].chatMessages.map((text, index) => {
+                if (index % 2 === 0) {
+                    return { sender: userData.currentUsername, text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
+                } else {
+                    return { sender: translations[userData.language][chatType] || chatType, text: text };
+                }
+            });
             const messageCount = Math.floor(Math.random() * 5) + 3;
             return messages.slice(0, messageCount);
         }
@@ -449,12 +489,12 @@
             const messageElement = document.getElementById('promoMessage');
             if (!promoCode) {
                 messageElement.className = 'error';
-                messageElement.textContent = translations[userData.language].invalidPromoCode || 'Invalid promo code!';
+                messageElement.textContent = translations[userData.language].invalidPromoCode;
                 return;
             }
             if (userData.usedPromoCodes.includes(promoCode)) {
                 messageElement.className = 'error';
-                messageElement.textContent = translations[userData.language].promoCodeAlreadyUsed || 'This promo code has already been used!';
+                messageElement.textContent = translations[userData.language].promoCodeAlreadyUsed;
                 return;
             }
             const promo = PROMO_CODES.find(p => p.code === promoCode);
@@ -464,16 +504,18 @@
                 saveData();
                 updateLimitsDisplay();
                 messageElement.className = 'success';
-                messageElement.textContent = translations[userData.language].success || 'Success!';
+                messageElement.textContent = translations[userData.language].success;
             } else {
                 messageElement.className = 'error';
-                messageElement.textContent = translations[userData.language].invalidPromoCode || 'Invalid promo code!';
+                messageElement.textContent = translations[userData.language].invalidPromoCode;
             }
         }
 
         function backToMain() {
             showScreen('screen3');
-            updateLimitsDisplay();
+            userData.currentUsername = null;
+            userData.currentGender = null;
+            saveData();
         }
 
         function backToUsername() {
@@ -512,6 +554,9 @@
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate');
                 element.textContent = translations[userData.language][key];
+                if (key === 'selectGender' && userData.currentUsername) {
+                    element.textContent += userData.currentUsername;
+                }
             });
             updateLimitsDisplay();
         }
@@ -524,7 +569,6 @@
             } else {
                 showScreen('screen1');
             }
-            updateLimitsDisplay();
         }
 
         initialize();
