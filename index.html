@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Verification App</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: Arial, sans-serif; background-color: #f3f4f6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -53,7 +54,7 @@
         <div id="screen3" class="screen hidden">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold" data-translate="mainMenu">Main Menu</h2>
-                <button onclick="showSettings()" class="bg-gray-500 text-white p-2 rounded btn" data-translate="settings">Settings</button>
+                <button onclick="showSettings()" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
             </div>
             <p class="mb-4 text-center">
                 <span data-translate="currentLimits">Current Limits: </span>
@@ -159,9 +160,6 @@
             { code: 'M6W1V8P9G2N3A4L0T', limits: 37 },
             { code: 'T4B3I7Q0S9F1V2R6X', limits: 40 },
             { code: 'N4M7T9L8G5P1R3W2V', limits: 50 },
-
-
-
             { code: 'Z3A7B1K',          limits: 1 },
             { code: 'N6D4J2M9',         limits: 3 },
             { code: 'P0L9G8I',          limits: 4 },
@@ -182,9 +180,6 @@
             { code: 'P3S0M2A6T7L1N8V',  limits: 37 },
             { code: 'F9R4T2X3S1V0I7B',  limits: 40 },
             { code: 'Z8N2L3T0V7P5R1W',  limits: 50 },
-
-
-
             { code: 'R8V1Z0',          limits: 1 },
             { code: 'D4K2J7L',         limits: 3 },
             { code: 'U5B9A2T',         limits: 4 },
@@ -260,7 +255,7 @@
                 english: 'English',
                 russian: 'Russian',
                 apply: 'Apply',
-                invalidUsername: 'Please enter a valid username starting with @',
+                invalidUsername: 'Invalid username!',
                 usernameAlreadyUsed: 'This username has already been checked',
                 invalidCode: 'Invalid code',
                 invalidPromoCode: 'Invalid promo code!',
@@ -323,7 +318,7 @@
                 english: 'Английский',
                 russian: 'Русский',
                 apply: 'Применить',
-                invalidUsername: 'Пожалуйста, введите действительное имя пользователя, начинающееся с @',
+                invalidUsername: 'Неверный username!',
                 usernameAlreadyUsed: 'Это имя пользователя уже было проверено',
                 invalidCode: 'Неверный код',
                 invalidPromoCode: 'Неверный промокод!',
@@ -474,12 +469,12 @@
 
         function submitUsername() {
             const username = document.getElementById('usernameInput').value.trim();
-            if (!username.startsWith('@') || username.length < 2) {
+            if (!username.startsWith('@') || username.length < 5 || username.length > 13) {
                 showError('errorUsername', translations[userData.language].invalidUsername);
                 return;
             }
             if (userData.usedUsernames.includes(username)) {
-                showError('errorUsername', translations[userData.language].youCantCheckSamePerson);
+                showError('errorUsername', translations[userData.language].usernameAlreadyUsed);
                 return;
             }
             clearError('errorUsername');
@@ -552,7 +547,7 @@
         function generateFakeMessages(chatType) {
             const messages = translations[userData.language].chatMessages.map((text, index) => {
                 if (index % 2 === 0) {
-                    return { sender: userData.currentUsername || 'You', text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
+                    return { sender: userData.currentUsername, text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
                 } else {
                     return { sender: translations[userData.language][chatType] || chatType, text: text };
                 }
@@ -600,10 +595,7 @@
             userData.currentUsername = null;
             userData.currentGender = null;
             userData.selectedChatOptions = null;
-            userData.chatMessages = {};
-            CHAT_OPTIONS.forEach(chatType => {
-                userData.chatMessages[chatType] = generateFakeMessages(chatType);
-            });
+            userData.chatMessages = {};  // Clear messages without generating new ones
             saveData();
         }
 
