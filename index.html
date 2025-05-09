@@ -24,6 +24,7 @@
         body.dark .error { color: #ff6666; }
         body.dark .success { color: #66ff66; }
         body.dark select { color: #f3f4f6; background-color: #555; }
+        body.dark input { background-color: #555; color: #f3f4f6; border-color: #666; }
     </style>
 </head>
 <body>
@@ -84,7 +85,6 @@
         <div id="chatScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectChat">Select Chat</h2>
             <div id="chatButtons" class="mb-4"></div>
-            <button onclick="backToChats()" class="w-full bg-gray-500 text-white p-2 mb-2 rounded btn" data-translate="back">Back</button>
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
         </div>
 
@@ -139,9 +139,72 @@
         const CHAT_OPTIONS = ['mom', 'dad', 'brother', 'sister', 'lovedOne'];
 
         const PROMO_CODES = [
-            { code: 'TEST123', limits: 5 },
-            { code: 'PROMO1', limits: 10 },
-            { code: 'PROMO2', limits: 15 }
+            { code: 'TEST123',           limits: 1 },
+            { code: 'HGJKL89',           limits: 3 },
+            { code: 'IAMTOP',            limits: 4 },
+            { code: 'MYNEWYEAR',         limits: 5 },
+            { code: 'READERBOT22ARE23',  limits: 8 },
+            { code: 'B7J3V9',            limits: 11 },
+            { code: 'XQ4D8',             limits: 12 },
+            { code: 'K9V7YPZ6',          limits: 13 },
+            { code: 'JZ2R',              limits: 14 },
+            { code: 'F6B3V1H8L7M9Z0P',   limits: 18 },
+            { code: 'R9J3K2B8C4D1L6X7T', limits: 20 },
+            { code: 'Q0T2X7M6P1A3D5V9L', limits: 22 },
+            { code: 'S3A8Z9F1B7K0V2J6Y', limits: 24 },
+            { code: 'M6W1V8P9G2N3A4L0T', limits: 28 },
+            { code: 'C4D1Q9A6B7V5N2LZ',  limits: 30 },
+            { code: 'L3T7X2B0J8Q1H9ZK',  limits: 33 },
+            { code: 'P2S9X5F1V3R8K0YJ',  limits: 34 },
+            { code: 'M6W1V8P9G2N3A4L0T', limits: 37 },
+            { code: 'T4B3I7Q0S9F1V2R6X', limits: 40 },
+            { code: 'N4M7T9L8G5P1R3W2V', limits: 50 },
+
+
+
+            { code: 'Z3A7B1K',          limits: 1 },
+            { code: 'N6D4J2M9',         limits: 3 },
+            { code: 'P0L9G8I',          limits: 4 },
+            { code: 'V1Y3U5O',          limits: 5 },
+            { code: 'W7T2D4F3G9J1',     limits: 8 },
+            { code: 'A2Q9V7Z',          limits: 11 },
+            { code: 'H4J1X3M',          limits: 12 },
+            { code: 'K8V0P2Y6S',        limits: 13 },
+            { code: 'B9Z1R4',           limits: 14 },
+            { code: 'Y6L2T5F9D0N3P',    limits: 18 },
+            { code: 'U1C8J7W5L9B4Z0T',  limits: 20 },
+            { code: 'Q9V2X3T5J7P0L1N8', limits: 22 },
+            { code: 'C6W3V7B5F1Y9Z0T',  limits: 24 },
+            { code: 'R4M2P8G1N9A3K0L',  limits: 28 },
+            { code: 'X5S1V7B9N0P4L2K',  limits: 30 },
+            { code: 'W3T0X2F1J9Y8M7K',  limits: 33 },
+            { code: 'T7V0R4K2S1P8Y5J',  limits: 34 },
+            { code: 'P3S0M2A6T7L1N8V',  limits: 37 },
+            { code: 'F9R4T2X3S1V0I7B',  limits: 40 },
+            { code: 'Z8N2L3T0V7P5R1W',  limits: 50 },
+
+
+
+            { code: 'R8V1Z0',          limits: 1 },
+            { code: 'D4K2J7L',         limits: 3 },
+            { code: 'U5B9A2T',         limits: 4 },
+            { code: 'Q1S3M7P',         limits: 5 },
+            { code: 'F6V4W2G8Z1P',     limits: 8 },
+            { code: 'N9L7R2X',         limits: 11 },
+            { code: 'H3T0Y8J',         limits: 12 },
+            { code: 'L4Z9M1V6',        limits: 13 },
+            { code: 'P2C5K0R',         limits: 14 },
+            { code: 'T7J9F0A3Y8L1N',   limits: 18 },
+            { code: 'B5C6V7K9L1P0R',   limits: 20 },
+            { code: 'M3X1Y2F9N5T8V0J', limits: 22 },
+            { code: 'S4W8V7B2T1R6L0Z', limits: 24 },
+            { code: 'P1A6G9L7F2X0T4N', limits: 28 },
+            { code: 'C9R2M5N8Y4P3V7B', limits: 30 },
+            { code: 'K6V1X3W9J2Y8L0R', limits: 33 },
+            { code: 'S7T4V0Y2P1K9R6X', limits: 34 },
+            { code: 'L5B9S3M2T0R8V1N', limits: 37 },
+            { code: 'J2X9R4T5S0V7P1F', limits: 40 },
+            { code: 'N4T8L1P3V9G7W0R', limits: 50 }
         ];
 
         let userData = JSON.parse(localStorage.getItem('userData')) || {
@@ -151,7 +214,9 @@
             usedUsernames: [],
             usedPromoCodes: [],
             theme: 'light',
-            language: 'en'
+            language: 'en',
+            selectedChatOptions: null,
+            chatMessages: {}
         };
 
         if (typeof userData.limits !== 'number' || userData.limits < 0) {
@@ -182,7 +247,7 @@
                 female: 'Female',
                 loading: 'Loading...',
                 selectChat: 'Select Chat',
-                fakeChat: 'Fake Chat',
+                fakeChat: 'Сorrespondence',
                 enterPromoCode: 'Enter Promo Code',
                 buyPromoCodes: 'Promo codes can be purchased at @Clickerstart_bot',
                 noLimitsAvailable: 'No Limits Available',
@@ -219,14 +284,15 @@
                     'Sounds great!',
                     'Yeah, looking forward to it.',
                     'Tell me how it went later!'
-                ]
+                ],
+                youCantCheckSamePerson: 'You can\'t check the same person multiple times!'
             },
             ru: {
-                enterTelegramId: 'Введите Telegram ID',
+                enterTelegramId: 'Введите ID Telegram',
                 submit: 'Отправить',
-                enterCode: 'Введите 6-значный код, отправленный в Telegram:',
-                verify: 'Подтвердить',
-                subscribeToChannels: 'Подписаться на каналы',
+                enterCode: 'Введите 6-значный код, отправленный в ваш Telegram:',
+                verify: 'Проверить',
+                subscribeToChannels: 'Подпишитесь на каналы',
                 pleaseSubscribe: 'Пожалуйста, подпишитесь на следующие каналы:',
                 subscribeToNickNaymes2Bot: 'Подписаться на @NickNaymes2Bot',
                 subscribeToMessagesibotnews: 'Подписаться на @messagesibotnews',
@@ -239,16 +305,16 @@
                 enterUsername: 'Введите имя пользователя',
                 next: 'Далее',
                 back: 'Назад',
-                selectGender: 'Выберите пол пользователя ',
+                selectGender: 'Выберите пол ',
                 male: 'Мужской',
                 female: 'Женский',
                 loading: 'Загрузка...',
                 selectChat: 'Выберите чат',
-                fakeChat: 'Фальшивый чат',
+                fakeChat: 'Переписка',
                 enterPromoCode: 'Введите промокод',
                 buyPromoCodes: 'Промокоды можно приобрести у @Clickerstart_bot',
-                noLimitsAvailable: 'Нет доступных лимитов',
-                pleaseTopUp: 'У вас закончились лимиты. Пожалуйста, пополните.',
+                noLimitsAvailable: 'Лимиты недоступны',
+                pleaseTopUp: 'У вас не осталось лимитов. Пожалуйста, пополните.',
                 backToMainMenu: 'Вернуться в главное меню',
                 theme: 'Тема',
                 language: 'Язык',
@@ -267,21 +333,22 @@
                 dad: 'Папа',
                 brother: 'Брат',
                 sister: 'Сестра',
-                lovedOne: 'Любимый/Любимая',
+                lovedOne: 'Любимый человек',
                 lovedOneMale: 'Любимый',
                 lovedOneFemale: 'Любимая',
                 chatMessages: [
-                    'Привет {chatType}, как дела?',
-                    'Привет! Всё нормально, а у тебя?',
-                    'Тоже нормально, решил написать!',
+                    'Привет, {chatType}, как дела?',
+                    'Привет! У меня все хорошо, а у тебя?',
+                    'У меня тоже, решил написать!',
                     'Круто, давай поболтаем!',
-                    'Какие планы на выходные?',
-                    'Может, с друзьями погуляю, а ты?',
-                    'Я тоже, думаю на пляж сходить.',
-                    'Звучит классно!',
-                    'Ага, жду с нетерпением.',
-                    'Расскажешь потом, как прошло!'
-                ]
+                    'Какие у тебя планы на выходные?',
+                    'Может, потусуюсь с друзьями, а ты?',
+                    'Я тоже, думаю сходить на пляж.',
+                    'Звучит здорово!',
+                    'Да, жду с нетерпением.',
+                    'Расскажи потом, как прошло!'
+                ],
+                youCantCheckSamePerson: 'Нельзя проверять одного и того же человека несколько раз!'
             }
         };
 
@@ -397,6 +464,9 @@
                 if (userData.limits <= 0) {
                     showScreen('noLimitsScreen');
                 } else {
+                    const options = [...CHAT_OPTIONS];
+                    userData.selectedChatOptions = options.sort(() => Math.random() - 0.5).slice(0, Math.floor(Math.random() * options.length) + 1);
+                    saveData();
                     showScreen('usernameScreen');
                 }
             });
@@ -409,16 +479,17 @@
                 return;
             }
             if (userData.usedUsernames.includes(username)) {
-                showError('errorUsername', translations[userData.language].usernameAlreadyUsed);
+                showError('errorUsername', translations[userData.language].youCantCheckSamePerson);
                 return;
             }
             clearError('errorUsername');
             userData.currentUsername = username;
+            userData.usedUsernames.push(username);
             saveData();
-            showScreen('genderScreen'); // Переключаем экран перед обновлением usernameDisplay
+            showScreen('genderScreen');
             const usernameDisplay = document.getElementById('usernameDisplay');
             if (usernameDisplay) {
-                usernameDisplay.textContent = username; // Обновляем только после переключения экрана
+                usernameDisplay.textContent = username;
             } else {
                 console.error('Element with id "usernameDisplay" not found');
             }
@@ -431,6 +502,14 @@
         }
 
         function showLoadingScreen() {
+            if (userData.limits > 0) {
+                userData.limits -= 1;
+                saveData();
+                updateLimitsDisplay();
+            } else {
+                showScreen('noLimitsScreen');
+                return;
+            }
             showScreen('loadingScreen');
             const loadingText = document.getElementById('loadingText');
             loadingText.textContent = translations[userData.language].loading;
@@ -443,14 +522,13 @@
             showScreen('chatScreen');
             const chatButtons = document.getElementById('chatButtons');
             chatButtons.innerHTML = '';
-            const options = [...CHAT_OPTIONS];
+            let options = [...userData.selectedChatOptions];
             if (userData.currentGender === 'male') {
-                options[options.length - 1] = 'lovedOneMale';
+                options = options.map(opt => opt === 'lovedOne' ? 'lovedOneMale' : opt);
             } else if (userData.currentGender === 'female') {
-                options[options.length - 1] = 'lovedOneFemale';
+                options = options.map(opt => opt === 'lovedOne' ? 'lovedOneFemale' : opt);
             }
-            const randomOptions = options.sort(() => Math.random() - 0.5).slice(0, Math.floor(Math.random() * options.length) + 1);
-            for (const option of randomOptions) {
+            for (const option of options) {
                 const button = document.createElement('button');
                 button.className = 'w-full bg-blue-500 text-white p-2 mb-2 rounded btn';
                 button.textContent = translations[userData.language][option] || option;
@@ -462,14 +540,19 @@
         function showFakeChat(chatType) {
             showScreen('fakeChatScreen');
             const content = document.getElementById('fakeChatContent');
-            const messages = generateFakeMessages(chatType);
+            let messages = userData.chatMessages[chatType];
+            if (!messages) {
+                messages = generateFakeMessages(chatType);
+                userData.chatMessages[chatType] = messages;
+                saveData();
+            }
             content.innerHTML = messages.map(msg => `<p><strong>${msg.sender}:</strong> ${msg.text}</p>`).join('');
         }
 
         function generateFakeMessages(chatType) {
             const messages = translations[userData.language].chatMessages.map((text, index) => {
                 if (index % 2 === 0) {
-                    return { sender: userData.currentUsername, text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
+                    return { sender: userData.currentUsername || 'You', text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
                 } else {
                     return { sender: translations[userData.language][chatType] || chatType, text: text };
                 }
@@ -505,6 +588,7 @@
                 updateLimitsDisplay();
                 messageElement.className = 'success';
                 messageElement.textContent = translations[userData.language].success;
+                document.getElementById('promoCode').value = '';
             } else {
                 messageElement.className = 'error';
                 messageElement.textContent = translations[userData.language].invalidPromoCode;
@@ -515,6 +599,11 @@
             showScreen('screen3');
             userData.currentUsername = null;
             userData.currentGender = null;
+            userData.selectedChatOptions = null;
+            userData.chatMessages = {};
+            CHAT_OPTIONS.forEach(chatType => {
+                userData.chatMessages[chatType] = generateFakeMessages(chatType);
+            });
             saveData();
         }
 
