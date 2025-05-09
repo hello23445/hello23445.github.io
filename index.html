@@ -254,15 +254,11 @@
             errorElement.classList.add('hidden');
         }
 
-        function initialize() {
-            updateLimitsDisplay();
-            if (userData.telegramId && userData.verified) {
-                checkSubscriptions(true);
-            } else {
-                showScreen('screen1');
+        function updateLimitsDisplay() {
+            const limitCountElement = document.getElementById('limitCount');
+            if (limitCountElement) {
+                limitCountElement.textContent = userData.limits;
             }
-            applyTheme();
-            translatePage();
         }
 
         async function submitTelegramId() {
@@ -293,9 +289,13 @@
                     saveData();
                     document.getElementById('codeInput').classList.remove('hidden');
                 } else {
+                    userData.verified = true;
+                    saveData();
                     checkSubscriptions(true);
                 }
             } catch (error) {
+                userData.verified = true;
+                saveData();
                 checkSubscriptions(true);
             }
         }
@@ -329,18 +329,12 @@
 
             if (allSubscribed) {
                 showScreen('screen3');
+                updateLimitsDisplay();
             } else {
                 showScreen('screen2');
                 if (!autoProceed) {
                     showError('error2', translations[userData.language].pleaseSubscribe || 'Please subscribe to all channels');
                 }
-            }
-        }
-
-        function updateLimitsDisplay() {
-            const limitCountElement = document.getElementById('limitCount');
-            if (limitCountElement) {
-                limitCountElement.textContent = userData.limits;
             }
         }
 
@@ -479,6 +473,7 @@
 
         function backToMain() {
             showScreen('screen3');
+            updateLimitsDisplay();
         }
 
         function backToUsername() {
@@ -518,6 +513,17 @@
                 const key = element.getAttribute('data-translate');
                 element.textContent = translations[userData.language][key];
             });
+            updateLimitsDisplay();
+        }
+
+        function initialize() {
+            applyTheme();
+            translatePage();
+            if (userData.telegramId && userData.verified) {
+                checkSubscriptions(true);
+            } else {
+                showScreen('screen1');
+            }
             updateLimitsDisplay();
         }
 
