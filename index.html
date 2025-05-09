@@ -89,7 +89,7 @@
         </div>
 
         <div id="fakeChatScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Fake Chat</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Chat</h2>
             <div id="fakeChatContent" class="mb-4 p-4 border rounded"></div>
             <button onclick="backToChats()" class="w-full bg-gray-500 text-white p-2 mb-2 rounded btn" data-translate="back">Back</button>
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
@@ -218,11 +218,11 @@
             selectedChatOptions: null,
             chatMessages: {}
         };
-
+        
         if (typeof userData.limits !== 'number' || userData.limits < 0) {
             userData.limits = 0;
         }
-
+        
         const translations = {
             en: {
                 enterTelegramId: 'Enter Telegram ID',
@@ -271,8 +271,8 @@
                 brother: 'Brother',
                 sister: 'Sister',
                 lovedOne: 'Loved One',
-                lovedOneMale: 'Beloved (Male)',
-                lovedOneFemale: 'Beloved (Female)',
+                lovedOneMale: 'Beloved',
+                lovedOneFemale: 'Beloved',
                 chatMessages: [
                     'Hi {chatType}, how are you?',
                     'Hi! I\'m fine, and you?',
