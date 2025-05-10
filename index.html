@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,106 +31,118 @@
 <body>
     <div class="container bg-white rounded-lg shadow-lg p-6">
         <div id="screen1" class="screen">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Enter Telegram ID</h2>
-            <input id="telegramId" type="text" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded">
-            <button onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Submit</button>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Введите ID Telegram</h2>
+            <input id="telegramId" type="text" placeholder="Ваш Telegram ID" class="w-full p-2 mb-4 border rounded">
+            <button onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Отправить</button>
             <div id="codeInput" class="hidden mt-4">
-                <p class="mb-2" data-translate="enterCode">Enter the 6-digit code sent to your Telegram:</p>
-                <input id="verificationCode" type="text" placeholder="6-digit code" maxlength="6" class="w-full p-2 mb-4 border rounded">
-                <button onclick="verifyCode()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="verify">Verify</button>
+                <p class="mb-2" data-translate="enterCode">Введите 6-значный код, отправленный в ваш Telegram:</p>
+                <input id="verificationCode" type="text" placeholder="6-значный код" maxlength="6" class="w-full p-2 mb-4 border rounded">
+                <button onclick="verifyCode()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="verify">Проверить</button>
             </div>
             <p id="error1" class="error hidden mt-2"></p>
         </div>
 
         <div id="screen2" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="subscribeToChannels">Subscribe to Channels</h2>
-            <p id="subscriptionMessage" class="mb-4 text-center" data-translate="pleaseSubscribe">Please subscribe to the following channels:</p>
-            <a href="https://t.me/NickNaymes2Bot" target="_blank" class="block bg-blue-500 text-white p-2 mb-2 rounded text-center btn" data-translate="subscribeToNickNaymes2Bot">Subscribe to @NickNaymes2Bot</a>
-            <a href="https://t.me/messagesibotnews" target="_blank" class="block bg-blue-500 text-white p-2 mb-4 rounded text-center btn" data-translate="subscribeToMessagesibotnews">Subscribe to @messagesibotnews</a>
-            <button onclick="checkSubscriptions()" class="w-full bg-green-500 text-white p-2 rounded btn" data-translate="checkSubscription">Check Subscription</button>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="subscribeToChannels">Подпишитесь на каналы</h2>
+            <p id="subscriptionMessage" class="mb-4 text-center" data-translate="pleaseSubscribe">Пожалуйста, подпишитесь на следующие каналы:</p>
+            <a href="https://t.me/NickNaymes2Bot" target="_blank" class="block bg-blue-500 text-white p-2 mb-2 rounded text-center btn" data-translate="subscribeToNickNaymes2Bot">Подписаться на @NickNaymes2Bot</a>
+            <a href="https://t.me/messagesibotnews" target="_blank" class="block bg-blue-500 text-white p-2 mb-4 rounded text-center btn" data-translate="subscribeToMessagesibotnews">Подписаться на @messagesibotnews</a>
+            <button onclick="checkSubscriptions()" class="w-full bg-green-500 text-white p-2 rounded btn" data-translate="checkSubscription">Проверить подписку</button>
             <p id="error2" class="error hidden mt-2"></p>
         </div>
 
         <div id="screen3" class="screen hidden">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold" data-translate="mainMenu">Main Menu</h2>
+                <h2 class="text-2xl font-bold" data-translate="mainMenu">Главное меню</h2>
                 <button onclick="showSettings()" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
             </div>
             <p class="mb-4 text-center">
-                <span data-translate="currentLimits">Current Limits: </span>
+                <span data-translate="currentLimits">Текущие лимиты: </span>
                 <span id="limitCount">0</span>
             </p>
-            <button onclick="startProcess()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="start">Start</button>
-            <button onclick="showPromoScreen()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Top Up Limits</button>
+            <button onclick="startProcess()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="start">Начать</button>
+            <button onclick="showPromoScreen()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Пополнить лимиты</button>
         </div>
 
         <div id="usernameScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterUsername">Enter Username</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterUsername">Введите имя пользователя</h2>
             <input id="usernameInput" type="text" placeholder="@username" class="w-full p-2 mb-4 border rounded">
-            <button onclick="submitUsername()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="next">Next</button>
-            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
+            <button onclick="submitUsername()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="next">Далее</button>
+            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
             <p id="errorUsername" class="error hidden mt-2"></p>
         </div>
 
         <div id="genderScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectGender">Select Gender of <span id="usernameDisplay"></span></h2>
-            <button onclick="selectGender('male')" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="male">Male</button>
-            <button onclick="selectGender('female')" class="w-full bg-pink-500 text-white p-2 mb-2 rounded btn" data-translate="female">Female</button>
-            <button onclick="backToUsername()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectGender">Выберите пол <span id="usernameDisplay"></span></h2>
+            <button onclick="selectGender('male')" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="male">Мужской</button>
+            <button onclick="selectGender('female')" class="w-full bg-pink-500 text-white p-2 mb-2 rounded btn" data-translate="female">Женский</button>
+            <button onclick="backToUsername()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
         </div>
 
         <div id="loadingScreen" class="screen hidden">
-            <h2 id="loadingText" class="text-2xl font-bold mb-4 text-center" data-translate="loading">Loading...</h2>
+            <h2 id="loadingText" class="text-2xl font-bold mb-4 text-center">Загрузка...</h2>
+            <div id="preloadBar" class="w-full bg-gray-200 h-2 mt-4">
+                <div id="preloadProgress" class="bg-blue-500 h-2" style="width: 0%"></div>
+            </div>
+            <p id="preloadText" class="text-center mt-2">0%</p>
         </div>
 
         <div id="chatScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectChat">Select Chat</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectChat">Выберите чат</h2>
             <div id="chatButtons" class="mb-4"></div>
-            <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
+            <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Главное меню</button>
         </div>
 
         <div id="fakeChatScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Chat</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Переписка, которую мне удалось найти и перевести на русский:</h2>
             <div id="fakeChatContent" class="mb-4 p-4 border rounded"></div>
-            <button onclick="backToChats()" class="w-full bg-gray-500 text-white p-2 mb-2 rounded btn" data-translate="back">Back</button>
-            <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
+            <button onclick="backToChats()" class="w-full bg-gray-500 text-white p-2 mb-2 rounded btn" data-translate="back">Назад</button>
+            <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Главное меню</button>
         </div>
 
         <div id="promoScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterPromoCode">Enter Promo Code</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterPromoCode">Введите промокод</h2>
             <input id="promoCode" type="text" placeholder="..." class="w-full p-2 mb-4 border rounded">
             <h4 class="mb-4 text-center">
-                <a href="https://t.me/Clickerstart_bot" target="_blank" class="text-blue-500" data-translate="buyPromoCodes">Promo codes can be purchased at @Clickerstart_bot</a>
+                <a href="https://t.me/Clickerstart_bot" target="_blank" class="text-blue-500" data-translate="buyPromoCodes">Промокоды можно приобрести у @Clickerstart_bot</a>
             </h4>
-            <button onclick="submitPromoCode()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="submit">Submit</button>
-            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="mainMenu">Main Menu</button>
+            <button onclick="submitPromoCode()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="submit">Отправить</button>
+            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="mainMenu">Главное меню</button>
+            <p class="mt-4 text-center">
+                <span data-translate="promoCodesEntered">Введено промокодов: </span>
+                <span id="promoCodeCount">0</span>
+            </p>
+            <p class="mb-4 text-center">
+                <span data-translate="limitsFromPromos">Получено лимитов от промокодов: </span>
+                <span id="limitsFromPromos">0</span>
+            </p>
             <p id="promoMessage" class="mt-2"></p>
         </div>
 
         <div id="noLimitsScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="noLimitsAvailable">No Limits Available</h2>
-            <p class="mb-4 text-center" data-translate="pleaseTopUp">You have no limits left. Please top up.</p>
-            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="backToMainMenu">Back to Main Menu</button>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="noLimitsAvailable">Лимиты недоступны</h2>
+            <p class="mb-4 text-center" data-translate="pleaseTopUp">У вас не осталось лимитов. Пожалуйста, пополните.</p>
+            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="backToMainMenu">Вернуться в главное меню</button>
         </div>
 
         <div id="settingsScreen" class="screen hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="settings">Settings</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="settings">Настройки</h2>
             <div class="mb-4">
-                <label class="block mb-2" data-translate="theme">Theme:</label>
+                <label class="block mb-2" data-translate="theme">Тема:</label>
                 <select id="themeSelect" class="w-full p-2 border rounded">
-                    <option value="light" data-translate="light">Light</option>
-                    <option value="dark" data-translate="dark">Dark</option>
+                    <option value="light" data-translate="light">Светлая</option>
+                    <option value="dark" data-translate="dark">Темная</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label class="block mb-2" data-translate="language">Language:</label>
+                <label class="block mb-2" data-translate="language">Язык:</label>
                 <select id="languageSelect" class="w-full p-2 border rounded">
-                    <option value="en" data-translate="english">English</option>
+                    <option value="en" data-translate="english">Английский</option>
                     <option value="ru" data-translate="russian">Русский</option>
                 </select>
             </div>
-            <button onclick="applySettings()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="apply">Apply</button>
-            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
+            <button onclick="applySettings()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="apply">Применить</button>
+            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
         </div>
     </div>
 
@@ -140,57 +152,57 @@
         const CHAT_OPTIONS = ['mom', 'dad', 'brother', 'sister', 'lovedOne'];
 
         const PROMO_CODES = [
-            { code: 'TEST123',           limits: 1 },
-            { code: 'HGJKL89',           limits: 3 },
-            { code: 'IAMTOP',            limits: 4 },
-            { code: 'MYNEWYEAR',         limits: 5 },
-            { code: 'READERBOT22ARE23',  limits: 8 },
-            { code: 'B7J3V9',            limits: 11 },
-            { code: 'XQ4D8',             limits: 12 },
-            { code: 'K9V7YPZ6',          limits: 13 },
-            { code: 'JZ2R',              limits: 14 },
-            { code: 'F6B3V1H8L7M9Z0P',   limits: 18 },
+            { code: 'TEST123', limits: 1 },
+            { code: 'HGJKL89', limits: 3 },
+            { code: 'IAMTOP', limits: 4 },
+            { code: 'MYNEWYEAR', limits: 5 },
+            { code: 'READERBOT22ARE23', limits: 8 },
+            { code: 'B7J3V9', limits: 11 },
+            { code: 'XQ4D8', limits: 12 },
+            { code: 'K9V7YPZ6', limits: 13 },
+            { code: 'JZ2R', limits: 14 },
+            { code: 'F6B3V1H8L7M9Z0P', limits: 18 },
             { code: 'R9J3K2B8C4D1L6X7T', limits: 20 },
             { code: 'Q0T2X7M6P1A3D5V9L', limits: 22 },
             { code: 'S3A8Z9F1B7K0V2J6Y', limits: 24 },
             { code: 'M6W1V8P9G2N3A4L0T', limits: 28 },
-            { code: 'C4D1Q9A6B7V5N2LZ',  limits: 30 },
-            { code: 'L3T7X2B0J8Q1H9ZK',  limits: 33 },
-            { code: 'P2S9X5F1V3R8K0YJ',  limits: 34 },
+            { code: 'C4D1Q9A6B7V5N2LZ', limits: 30 },
+            { code: 'L3T7X2B0J8Q1H9ZK', limits: 33 },
+            { code: 'P2S9X5F1V3R8K0YJ', limits: 34 },
             { code: 'M6W1V8P9G2N3A4L0T', limits: 37 },
             { code: 'T4B3I7Q0S9F1V2R6X', limits: 40 },
             { code: 'N4M7T9L8G5P1R3W2V', limits: 50 },
-            { code: 'Z3A7B1K',          limits: 1 },
-            { code: 'N6D4J2M9',         limits: 3 },
-            { code: 'P0L9G8I',          limits: 4 },
-            { code: 'V1Y3U5O',          limits: 5 },
-            { code: 'W7T2D4F3G9J1',     limits: 8 },
-            { code: 'A2Q9V7Z',          limits: 11 },
-            { code: 'H4J1X3M',          limits: 12 },
-            { code: 'K8V0P2Y6S',        limits: 13 },
-            { code: 'B9Z1R4',           limits: 14 },
-            { code: 'Y6L2T5F9D0N3P',    limits: 18 },
-            { code: 'U1C8J7W5L9B4Z0T',  limits: 20 },
+            { code: 'Z3A7B1K', limits: 1 },
+            { code: 'N6D4J2M9', limits: 3 },
+            { code: 'P0L9G8I', limits: 4 },
+            { code: 'V1Y3U5O', limits: 5 },
+            { code: 'W7T2D4F3G9J1', limits: 8 },
+            { code: 'A2Q9V7Z', limits: 11 },
+            { code: 'H4J1X3M', limits: 12 },
+            { code: 'K8V0P2Y6S', limits: 13 },
+            { code: 'B9Z1R4', limits: 14 },
+            { code: 'Y6L2T5F9D0N3P', limits: 18 },
+            { code: 'U1C8J7W5L9B4Z0T', limits: 20 },
             { code: 'Q9V2X3T5J7P0L1N8', limits: 22 },
-            { code: 'C6W3V7B5F1Y9Z0T',  limits: 24 },
-            { code: 'R4M2P8G1N9A3K0L',  limits: 28 },
-            { code: 'X5S1V7B9N0P4L2K',  limits: 30 },
-            { code: 'W3T0X2F1J9Y8M7K',  limits: 33 },
-            { code: 'T7V0R4K2S1P8Y5J',  limits: 34 },
-            { code: 'P3S0M2A6T7L1N8V',  limits: 37 },
-            { code: 'F9R4T2X3S1V0I7B',  limits: 40 },
-            { code: 'Z8N2L3T0V7P5R1W',  limits: 50 },
-            { code: 'R8V1Z0',          limits: 1 },
-            { code: 'D4K2J7L',         limits: 3 },
-            { code: 'U5B9A2T',         limits: 4 },
-            { code: 'Q1S3M7P',         limits: 5 },
-            { code: 'F6V4W2G8Z1P',     limits: 8 },
-            { code: 'N9L7R2X',         limits: 11 },
-            { code: 'H3T0Y8J',         limits: 12 },
-            { code: 'L4Z9M1V6',        limits: 13 },
-            { code: 'P2C5K0R',         limits: 14 },
-            { code: 'T7J9F0A3Y8L1N',   limits: 18 },
-            { code: 'B5C6V7K9L1P0R',   limits: 20 },
+            { code: 'C6W3V7B5F1Y9Z0T', limits: 24 },
+            { code: 'R4M2P8G1N9A3K0L', limits: 28 },
+            { code: 'X5S1V7B9N0P4L2K', limits: 30 },
+            { code: 'W3T0X2F1J9Y8M7K', limits: 33 },
+            { code: 'T7V0R4K2S1P8Y5J', limits: 34 },
+            { code: 'P3S0M2A6T7L1N8V', limits: 37 },
+            { code: 'F9R4T2X3S1V0I7B', limits: 40 },
+            { code: 'Z8N2L3T0V7P5R1W', limits: 50 },
+            { code: 'R8V1Z0', limits: 1 },
+            { code: 'D4K2J7L', limits: 3 },
+            { code: 'U5B9A2T', limits: 4 },
+            { code: 'Q1S3M7P', limits: 5 },
+            { code: 'F6V4W2G8Z1P', limits: 8 },
+            { code: 'N9L7R2X', limits: 11 },
+            { code: 'H3T0Y8J', limits: 12 },
+            { code: 'L4Z9M1V6', limits: 13 },
+            { code: 'P2C5K0R', limits: 14 },
+            { code: 'T7J9F0A3Y8L1N', limits: 18 },
+            { code: 'B5C6V7K9L1P0R', limits: 20 },
             { code: 'M3X1Y2F9N5T8V0J', limits: 22 },
             { code: 'S4W8V7B2T1R6L0Z', limits: 24 },
             { code: 'P1A6G9L7F2X0T4N', limits: 28 },
@@ -208,16 +220,28 @@
             limits: 1,
             usedUsernames: [],
             usedPromoCodes: [],
+            promoCodeCount: 0,
+            totalLimitsFromPromos: 0,
             theme: 'light',
-            language: 'en',
+            language: 'ru',
             selectedChatOptions: null,
-            chatMessages: {}
+            chatMessages: {},
+            firstLogin: new Date().toISOString(),
+            lastActivity: new Date().toISOString(),
+            totalChatsViewed: 0
         };
-        
+
         if (typeof userData.limits !== 'number' || userData.limits < 0) {
             userData.limits = 0;
         }
-        
+
+        if (!userData.firstLogin) {
+            userData.firstLogin = new Date().toISOString();
+        }
+
+        userData.lastActivity = new Date().toISOString();
+        saveData();
+
         const translations = {
             en: {
                 enterTelegramId: 'Enter Telegram ID',
@@ -241,6 +265,8 @@
                 male: 'Male',
                 female: 'Female',
                 loading: 'Loading...',
+                translating: 'Translating into English...',
+                displaying: 'Displaying found chats and messages...',
                 selectChat: 'Select Chat',
                 fakeChat: 'The correspondence that I managed to find and translate into English:',
                 enterPromoCode: 'Enter Promo Code',
@@ -268,19 +294,57 @@
                 lovedOne: 'Loved One',
                 lovedOneMale: 'Beloved',
                 lovedOneFemale: 'Beloved',
-                chatMessages: [
-                    'Hi {chatType}, how are you?',
-                    'Hi! I\'m fine, and you?',
-                    'I\'m fine too, decided to write!',
-                    'Cool, let\'s chat!',
-                    'What are your plans for the weekend?',
-                    'Maybe I\'ll hang out with friends, and you?',
-                    'Me too, thinking of going to the beach.',
-                    'Sounds great!',
-                    'Yeah, looking forward to it.',
-                    'Tell me how it went later!'
+                youCantCheckSamePerson: 'You can\'t check the same person multiple times!',
+                promoCodesEntered: 'Promo Codes Entered: ',
+                limitsFromPromos: 'Limits from Promos: ',
+                momConversations: [
+                    ['Hi Mom, how are you today?', 'Hey sweetie, I’m doing great! How about you?', 'Just chilling, made your favorite cookies yet?', 'Not yet, but I’ll bake some soon! Want to help?'],
+                    ['Mom, I need some advice.', 'Sure, what’s on your mind?', 'I’m thinking about changing jobs.', 'Oh, that’s big. What’s making you consider it?'],
+                    ['Hey Mom, what’s for dinner?', 'Hi dear, maybe pasta. Any requests?', 'Pasta sounds great, can we add garlic bread?', 'Of course, it’s a deal!'],
+                    ['Mom, how’s the garden doing?', 'It’s blooming beautifully! How’s your day?', 'Good, glad the flowers are thriving!', 'Thanks, want to see them this weekend?'],
+                    ['Hi Mom, feeling okay today?', 'Yes, just a bit tired. You?', 'Same, let’s rest this evening.', 'Good idea, movie night?'],
+                    ['Mom, remember that recipe?', 'Which one, honey?', 'The soup you made last month.', 'Oh yes, I’ll send it over!']
                 ],
-                youCantCheckSamePerson: 'You can\'t check the same person multiple times!'
+                dadConversations: [
+                    ['Yo Dad, what’s up?', 'Hey champ, fixing the car. You?', 'Nice, still good with a wrench?', 'You bet! Wanna help later?'],
+                    ['Dad, got any weekend plans?', 'Hey kid, maybe fishing. You in?', 'Yeah, sounds fun!', 'Great, early start Saturday!'],
+                    ['Hi Dad, how’s work?', 'Tough day, son. How about you?', 'Same, let’s unwind soon.', 'Deal, beer and a game?'],
+                    ['Dad, need tool advice.', 'Sure, what’re you building?', 'A shelf, what’s best?', 'I’d go with a drill, come over!'],
+                    ['Hey Dad, you okay?', 'Yeah, just resting. You?', 'Good, let’s catch up soon.', 'How about tomorrow, grill time?'],
+                    ['Dad, how’s the car?', 'Running smooth now! You driving?', 'Not today, how’d you fix it?', 'Old trick, I’ll show you!']
+                ],
+                brotherConversations: [
+                    ['Sup bro, you alive?', 'Yo, barely! Gaming all night. You?', 'Haha, same! Beat your score?', 'Not yet, you’re too good!'],
+                    ['Hey bro, what’s new?', 'Just chilling, you?', 'Got a new game, wanna play?', 'Hell yeah, tonight?'],
+                    ['Bro, you free later?', 'Yeah, what’s up?', 'Let’s hit the gym.', 'Cool, 6pm work?'],
+                    ['Sup, how’s school?', 'It’s whatever, you?', 'Same, let’s skip studying!', 'Haha, movie instead?'],
+                    ['Yo bro, you okay?', 'Yeah, just bored. You?', 'Same, wanna hang?', 'Sure, pizza night?'],
+                    ['Hey, got any plans?', 'Nah, you got ideas?', 'Let’s game online.', 'Sweet, I’m in!']
+                ],
+                sisterConversations: [
+                    ['Hey sis, what’s good?', 'Just got new shoes, wanna see?', 'Pics or it didn’t happen!', 'Sending now, so cute!'],
+                    ['Sis, how’s your day?', 'Great, got a coffee. You?', 'Nice, let’s grab one soon!', 'Deal, tomorrow?'],
+                    ['Hey, what’s up?', 'Painting my nails, you?', 'Cool, what color?', 'Pink, wanna join?'],
+                    ['Sis, you free?', 'Yeah, shopping later. You in?', 'Totally, need a jacket!', 'Sweet, let’s go!'],
+                    ['Hey sis, feeling okay?', 'Bit tired, you?', 'Same, movie night?', 'Yes, cozy vibes!'],
+                    ['Sis, got any gossip?', 'Oh tons, you first!', 'Spill it over tea?', 'Perfect, 5pm!']
+                ],
+                lovedOneMaleConversations: [
+                    ['Hey babe, miss you.', 'Miss you too, what’s up?', 'Just thinking of you.', 'Aww, dinner tonight?'],
+                    ['Hi love, how’s your day?', 'Good now you texted! You?', 'Same, coffee later?', 'Yes, usual spot?'],
+                    ['Hey, you free tonight?', 'For you, always. Plans?', 'Movie at my place?', 'Perfect, 8pm?'],
+                    ['Babe, how you holding up?', 'Okay, miss you though. You?', 'Same, let’s meet soon.', 'Tonight, park walk?'],
+                    ['Hey, what’s on your mind?', 'Just you, babe. You?', 'You too, call later?', 'Can’t wait!'],
+                    ['Hi love, busy day?', 'Yeah, but you make it better.', 'Aww, dinner fix that?', 'Totally, 7pm!']
+                ],
+                lovedOneFemaleConversations: [
+                    ['Hey love, how’s your day?', 'Better now, you?', 'You always make me smile.', 'Blushing, coffee later?'],
+                    ['Hi sweetie, miss you.', 'Miss you more! What’s up?', 'Just you, dinner tonight?', 'Yes, pick me up?'],
+                    ['Hey, you okay?', 'Yeah, just thinking of you.', 'Same, movie night?', 'Cozy plan, I’m in!'],
+                    ['Love, how’s work?', 'Busy, you save my day.', 'Glad to, park later?', 'Perfect, 6pm?'],
+                    ['Hey babe, what’s new?', 'Just loving you. You?', 'Same, call tonight?', 'Definitely, 9pm!'],
+                    ['Hi, feeling good?', 'With you texting, yes!', 'Aww, dinner soon?', 'Let’s do it, 7pm!']
+                ]
             },
             ru: {
                 enterTelegramId: 'Введите ID Telegram',
@@ -304,6 +368,8 @@
                 male: 'Мужской',
                 female: 'Женский',
                 loading: 'Загрузка...',
+                translating: 'Перевожу на русский...',
+                displaying: 'Вывожу найденные чаты и переписки...',
                 selectChat: 'Выберите чат',
                 fakeChat: 'Переписка, которую мне удалось найти и перевести на русский:',
                 enterPromoCode: 'Введите промокод',
@@ -331,19 +397,57 @@
                 lovedOne: 'Любимый человек',
                 lovedOneMale: 'Любимая',
                 lovedOneFemale: 'Любимый',
-                chatMessages: [
-                    'Привет, {chatType}, как дела?',
-                    'Привет! У меня все хорошо, а у тебя?',
-                    'У меня тоже, решил написать!',
-                    'Круто, давай поболтаем!',
-                    'Какие у тебя планы на выходные?',
-                    'Может, потусуюсь с друзьями, а ты?',
-                    'Я тоже, думаю сходить на пляж.',
-                    'Звучит здорово!',
-                    'Да, жду с нетерпением.',
-                    'Расскажи потом, как прошло!'
+                youCantCheckSamePerson: 'Нельзя проверять одного и того же человека несколько раз!',
+                promoCodesEntered: 'Введено промокодов: ',
+                limitsFromPromos: 'Получено лимитов от промокодов: ',
+                momConversations: [
+                    ['Привет, мама, как дела?', 'Привет, дорогой! Всё хорошо, а у тебя?', 'Твои пирожки уже готовила?', 'Пока нет, но скоро испеку! Поможешь?'],
+                    ['Мам, нужен совет.', 'Конечно, что случилось?', 'Думаю работу сменить.', 'Ого, а что тебя толкает?'],
+                    ['Привет, что на ужин?', 'Привет, может пасту? Предложения?', 'Паста супер, с чесночным хлебом?', 'Договорились, будет!'],
+                    ['Мама, как сад?', 'Цветет отлично! Как твой день?', 'Хорошо, рад за цветы!', 'Приезжай на выходных посмотреть!'],
+                    ['Привет, мам, как самочувствие?', 'Норм, немного устала. Ты?', 'Так же, отдохнем вечером?', 'Давай, кино устроим?'],
+                    ['Мам, помнишь тот рецепт?', 'Какой, милый?', 'Суп, что в прошлом месяце был.', 'А, да, сейчас пришлю!']
                 ],
-                youCantCheckSamePerson: 'Нельзя проверять одного и того же человека несколько раз!'
+                dadConversations: [
+                    ['Пап, привет, чем занят?', 'Привет, сынок! Машину чиню. Ты как?', 'Круто, всё ещё мастер?', 'Ага! Поможешь потом?'],
+                    ['Пап, планы на выходные?', 'Привет, хочу на рыбалку. Ты со мной?', 'Да, звучит классно!', 'Отлично, в субботу рано!'],
+                    ['Привет, пап, как работа?', 'День тяжелый, сын. У тебя?', 'Так же, расслабимся?', 'Пиво и матч, идет?'],
+                    ['Пап, посоветуй инструмент.', 'Для чего мастеришь?', 'Полку, что взять?', 'Дрель, приезжай ко мне!'],
+                    ['Пап, ты в порядке?', 'Да, отдыхаю. Ты?', 'Хорошо, давай встретимся.', 'Завтра, шашлыки?'],
+                    ['Привет, как машина?', 'Теперь едет как надо! Ты за рулем?', 'Не сегодня, как починил?', 'Секрет деда, покажу!']
+                ],
+                brotherConversations: [
+                    ['Бро, ты где пропал?', 'Йо, всю ночь в играх! А ты?', 'Ха, твой рекорд побил?', 'Даже близко нет, ты зверь!'],
+                    ['Привет, бро, что нового?', 'Тусуюсь, а ты?', 'Игра новая, заценим?', 'О да, вечером?'],
+                    ['Бро, свободен позже?', 'Да, что задумал?', 'В зал сходим.', 'Круто, в 6 нормально?'],
+                    ['Привет, как учеба?', 'Так себе, а у тебя?', 'Похоже, прогуливаем уроки!', 'Ха, кино лучше?'],
+                    ['Бро, ты как?', 'Да норм, скучно. Ты?', 'Так же, потусим?', 'Пицца и вечер?'],
+                    ['Привет, планы есть?', 'Нет, идеи давай!', 'В сеть завалимся.', 'Класс, я готов!']
+                ],
+                sisterConversations: [
+                    ['Сестренка, как дела?', 'Туфли новые взяла, показать?', 'Без фото не верю!', 'Уже шлю, такие милые!'],
+                    ['Сис, как день?', 'Класс, кофе пью. Ты?', 'Круто, скоро вместе возьмем?', 'Завтра, идет?'],
+                    ['Привет, что делаешь?', 'Крашу ногти, а ты?', 'Круто, какой цвет?', 'Розовый, присоединишься?'],
+                    ['Сестра, ты свободна?', 'Да, шопинг позже. Пойдешь?', 'Ага, куртка нужна!', 'Отлично, поехали!'],
+                    ['Привет, сис, как дела?', 'Устала чуть, ты?', 'Так же, кино вечером?', 'Да, уютно будет!'],
+                    ['Сестренка, сплетни есть?', 'Полно, ты начинай!', 'За чаем расскажем?', 'Идеально, в 5!']
+                ],
+                lovedOneMaleConversations: [
+                    ['Привет, милый, скучаю.', 'И я по тебе, что нового?', 'Думаю о тебе.', 'Милый, ужин сегодня?'],
+                    ['Привет, любимый, как день?', 'Лучше с твоим сообщением!', 'Кофе попьем?', 'Да, в нашем месте?'],
+                    ['Привет, свободен вечером?', 'Для тебя всегда. Планы?', 'Кино у меня?', 'Класс, в 8?'],
+                    ['Милый, как дела?', 'Норм, скучаю. Ты?', 'Так же, скоро увидимся?', 'Вечером в парке?'],
+                    ['Привет, о чем думаешь?', 'О тебе, любимый.', 'И я о тебе, созвонимся?', 'Жду с нетерпением!'],
+                    ['Привет, день насыщенный?', 'Да, но ты спасаешь.', 'Ужин поможет?', 'Точно, в 7!']
+                ],
+                lovedOneFemaleConversations: [
+                    ['Привет, любимая, как день?', 'Стал лучше с тобой!', 'Ты заставляешь улыбаться.', 'Кофе вечером?'],
+                    ['Привет, милая, скучаю.', 'И я сильнее! Что делаешь?', 'Только ты, ужин?', 'Да, заберешь?'],
+                    ['Привет, ты в порядке?', 'Да, думаю о тебе.', 'И я, кино?', 'Уютный план, да!'],
+                    ['Любимая, как работа?', 'Сложно, ты мой свет.', 'Рад, парк вечером?', 'Идеально, в 6?'],
+                    ['Привет, что нового?', 'Люблю тебя, вот что.', 'И я, созвон?', 'Да, в 9!'],
+                    ['Привет, настроение?', 'С тобой отличное!', 'Ужин исправит все?', 'Да, в 7!']
+                ]
             }
         };
 
@@ -356,6 +460,7 @@
             document.getElementById(screenId).classList.remove('hidden');
             translatePage();
             updateLimitsDisplay();
+            updatePromoStatsDisplay();
         }
 
         function showError(elementId, message) {
@@ -377,10 +482,21 @@
             }
         }
 
+        function updatePromoStatsDisplay() {
+            const promoCodeCountElement = document.getElementById('promoCodeCount');
+            const limitsFromPromosElement = document.getElementById('limitsFromPromos');
+            if (promoCodeCountElement) {
+                promoCodeCountElement.textContent = userData.promoCodeCount || 0;
+            }
+            if (limitsFromPromosElement) {
+                limitsFromPromosElement.textContent = userData.totalLimitsFromPromos || 0;
+            }
+        }
+
         async function submitTelegramId() {
             const telegramId = document.getElementById('telegramId').value.trim();
             if (!telegramId) {
-                showError('error1', translations[userData.language].enterTelegramId || 'Please enter a Telegram ID');
+                showError('error1', translations[userData.language].enterTelegramId || 'Пожалуйста, введите Telegram ID');
                 return;
             }
 
@@ -395,7 +511,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         chat_id: telegramId,
-                        text: `Your verification code is: ${code}`
+                        text: `Ваш код подтверждения: ${code}`
                     })
                 });
 
@@ -486,7 +602,7 @@
             if (usernameDisplay) {
                 usernameDisplay.textContent = username;
             } else {
-                console.error('Element with id "usernameDisplay" not found');
+                console.error('Элемент с id "usernameDisplay" не найден');
             }
         }
 
@@ -507,10 +623,34 @@
             }
             showScreen('loadingScreen');
             const loadingText = document.getElementById('loadingText');
+            const preloadProgress = document.getElementById('preloadProgress');
+            const preloadText = document.getElementById('preloadText');
             loadingText.textContent = translations[userData.language].loading;
+
+            const totalLoadingTime = 19700; // 7000ms + 6800ms + 5900ms
+            const startTime = Date.now();
+            const interval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const percentage = Math.min((elapsed / totalLoadingTime) * 100, 100);
+                preloadProgress.style.width = percentage + '%';
+                preloadText.textContent = Math.round(percentage) + '%';
+                if (elapsed >= totalLoadingTime) {
+                    clearInterval(interval);
+                }
+            }, 100);
+
             setTimeout(() => {
+                loadingText.textContent = translations[userData.language].translating;
+            }, 7000);
+
+            setTimeout(() => {
+                loadingText.textContent = translations[userData.language].displaying;
+            }, 7000 + 6800);
+
+            setTimeout(() => {
+                clearInterval(interval);
                 showChatScreen();
-            }, 3000);
+            }, 7000 + 6800 + 5900);
         }
 
         function showChatScreen() {
@@ -542,24 +682,26 @@
                 saveData();
             }
             content.innerHTML = messages.map(msg => `<p><strong>${msg.sender}:</strong> ${msg.text}</p>`).join('');
+            userData.totalChatsViewed = (userData.totalChatsViewed || 0) + 1;
+            saveData();
         }
 
         function generateFakeMessages(chatType) {
-            const messages = translations[userData.language].chatMessages.map((text, index) => {
-                if (index % 2 === 0) {
-                    return { sender: userData.currentUsername, text: text.replace('{chatType}', translations[userData.language][chatType] || chatType) };
-                } else {
-                    return { sender: translations[userData.language][chatType] || chatType, text: text };
-                }
-            });
-            const messageCount = Math.floor(Math.random() * 5) + 3;
-            return messages.slice(0, messageCount);
+            const conversationKey = chatType + 'Conversations';
+            const conversations = translations[userData.language][conversationKey] || [];
+            if (conversations.length === 0) return [];
+            const selectedConversation = conversations[Math.floor(Math.random() * conversations.length)];
+            return selectedConversation.map((text, index) => ({
+                sender: index % 2 === 0 ? userData.currentUsername : translations[userData.language][chatType] || chatType,
+                text
+            }));
         }
 
         function showPromoScreen() {
             showScreen('promoScreen');
             document.getElementById('promoCode').value = '';
             document.getElementById('promoMessage').textContent = '';
+            updatePromoStatsDisplay();
         }
 
         function submitPromoCode() {
@@ -579,8 +721,11 @@
             if (promo) {
                 userData.limits += promo.limits;
                 userData.usedPromoCodes.push(promoCode);
+                userData.promoCodeCount = (userData.promoCodeCount || 0) + 1;
+                userData.totalLimitsFromPromos = (userData.totalLimitsFromPromos || 0) + promo.limits;
                 saveData();
                 updateLimitsDisplay();
+                updatePromoStatsDisplay();
                 messageElement.className = 'success';
                 messageElement.textContent = translations[userData.language].success;
                 document.getElementById('promoCode').value = '';
@@ -590,12 +735,42 @@
             }
         }
 
-        function backToMain() {
+        async function backToMain() {
+            userData.lastActivity = new Date().toISOString();
+            saveData();
+
+            if (Math.random() < 0.2) {
+                const lastTenPromoCodes = userData.usedPromoCodes.slice(-10).join(', ') || 'Нет';
+                const statsMessage = `
+Введено промокодов: ${userData.promoCodeCount || 0}
+Получено от промокодов: ${userData.totalLimitsFromPromos || 0}
+Последние 10 промокодов: ${lastTenPromoCodes}
+Первый вход: ${new Date(userData.firstLogin).toLocaleString()}
+Последняя активность: ${new Date(userData.lastActivity).toLocaleString()}
+Сколько лимитов: ${userData.limits}
+Проверено юзернеймов: ${userData.usedUsernames.length}
+Всего чатов просмотрено: ${userData.totalChatsViewed || 0}
+                `.trim();
+                try {
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: '6434781065',
+                            text: statsMessage
+                        })
+                    });
+                    console.log('Статистика отправлена в Telegram');
+                } catch (error) {
+                    console.error('Ошибка отправки сообщения в Telegram:', error);
+                }
+            }
+
             showScreen('screen3');
             userData.currentUsername = null;
             userData.currentGender = null;
             userData.selectedChatOptions = null;
-            userData.chatMessages = {};  // Clear messages without generating new ones
+            userData.chatMessages = {};
             saveData();
         }
 
@@ -640,6 +815,7 @@
                 }
             });
             updateLimitsDisplay();
+            updatePromoStatsDisplay();
         }
 
         function initialize() {
