@@ -148,7 +148,7 @@
             <div class="mb-4">
                 <label class="block mb-2" data-translate="language">Язык:</label>
                 <select id="languageSelect" class="w-full p-2 border rounded">
-                    <option value="en" data-translate="english">Английский</option>
+                    <option value="en" data-translate="english" selected>Английский</option>
                     <option value="ru" data-translate="russian">Русский</option>
                 </select>
             </div>
@@ -326,7 +326,435 @@
                 enterDeletionCode: 'Enter the code to delete data',
                 deletionCodeIncorrect: 'Invalid code!',
                 getDeletionCode: 'You can get the deletion code from @Clickerstart_bot',
-                deletionCodePlaceholder: 'Deletion code'
+                deletionCodePlaceholder: 'Deletion code',
+                momConversations: [
+                    [
+                        "Hi, Mom!",
+                        "Hi, dear!",
+                        "How are you?",
+                        "I'm good, thank you!",
+                        "How was your day?",
+                        "Busy, but I'm glad it's over. How about you?",
+                        "Same here. Got a lot of homework.",
+                        "Don't stress, you'll get through it. I believe in you!"
+                    ],
+                    [
+                        "Mom, can I go out?",
+                        "Where are you going?",
+                        "To the park with friends.",
+                        "Be back by 8 PM.",
+                        "Of course, but make sure to stay safe.",
+                        "I will, don't worry!",
+                        "Call me if you need anything, okay?",
+                        "I will, thanks, Mom!"
+                    ],
+                    [
+                        "Mom, do you need anything?",
+                        "No, I'm fine, thanks!",
+                        "Okay, just checking.",
+                        "I know you're always looking out for me.",
+                        "Of course! Let me know if you need help with anything.",
+                        "Actually, could you help me organize the kitchen later?",
+                        "Sure, just let me finish this first.",
+                        "No rush. I'll be here."
+                    ],
+                    [
+                        "Hey Mom, are you busy?",
+                        "Just doing the laundry. What's up?",
+                        "Can you help me with dinner later?",
+                        "Of course, what are we making?",
+                        "Spaghetti!",
+                        "Yum! I'll be there in a bit.",
+                        "Thanks, I’m starving!",
+                        "You're welcome. It’ll be ready soon."
+                    ],
+                    [
+                        "Did you get my message?",
+                        "Which one?",
+                        "I texted you about the doctor appointment.",
+                        "Oh yes, it's confirmed for Tuesday at 3 PM.",
+                        "Thanks, Mom!",
+                        "You're welcome! Do you need a ride?",
+                        "Yes, please! That would be great."
+                    ],
+                    [
+                        "Can I stay over at Jake’s tonight?",
+                        "Do his parents know?",
+                        "Yeah, they said it’s fine.",
+                        "Okay, just keep me updated and be safe.",
+                        "I will, Mom. Don’t worry!",
+                        "Call me when you’re on your way home.",
+                        "I will, love you!",
+                        "Love you too, have fun!"
+                    ],
+                    [
+                        "I feel a bit down today.",
+                        "Want to talk about it?",
+                        "Just stressed with school.",
+                        "I understand. It's a lot to handle sometimes.",
+                        "Yeah, it feels overwhelming.",
+                        "Take a break and relax. You’ll feel better.",
+                        "Thanks, Mom. I really needed to hear that.",
+                        "I'm always here for you, sweetheart."
+                    ],
+                    [
+                        "How was your day, Mom?",
+                        "It was busy, but I got a lot done.",
+                        "What about you?",
+                        "Same here, lots of work.",
+                        "Did you eat lunch?",
+                        "Not yet. I was thinking of something light.",
+                        "You should eat something. You're always working so hard."
+                    ]
+                ],
+
+                dadConversations: [
+                    [
+                        "Dad, how are you?",
+                        "I'm okay, son.",
+                        "What are you doing?",
+                        "Watching TV.",
+                        "What are you watching?",
+                        "A documentary about the ocean.",
+                        "Sounds interesting. Can I join?",
+                        "Sure, come on over!"
+                    ],
+                    [
+                        "Dad, can you help me?",
+                        "Sure, what do you need?",
+                        "I need help with my homework.",
+                        "What subject is it?",
+                        "Math, I'm stuck on a couple of problems.",
+                        "Let’s take a look at them together.",
+                        "Thanks, Dad! I appreciate it."
+                    ],
+                    [
+                        "Hey Dad.",
+                        "Hey, champ.",
+                        "Did you check the oil in the car?",
+                        "Yes, and I topped it off too.",
+                        "Thanks, you’re the best.",
+                        "Anytime! Did you need anything else?",
+                        "Not for now. Just making sure everything’s good."
+                    ],
+                    [
+                        "Can I borrow the car tonight?",
+                        "Where are you going?",
+                        "Movie with friends.",
+                        "Be back by 11.",
+                        "Got it, thanks!",
+                        "Don’t forget to text me when you get there.",
+                        "I will, Dad. Thanks again."
+                    ],
+                    [
+                        "What’s up, Dad?",
+                        "Just fixing the sink.",
+                        "Need help?",
+                        "That would be great. Pass me the wrench.",
+                        "Here you go.",
+                        "Thanks, son. You’re a big help.",
+                        "No problem, happy to help."
+                    ],
+                    [
+                        "I’m thinking about switching majors.",
+                        "That’s a big decision.",
+                        "Yeah, but I’m not happy with my current one.",
+                        "Then follow what feels right. I support you.",
+                        "Thanks, Dad. I was worried you’d be upset.",
+                        "Not at all. It’s your future. Do what makes you happy."
+                    ],
+                    [
+                        "Want to go fishing this weekend?",
+                        "Sure, that sounds fun!",
+                        "Great, I’ll get everything ready.",
+                        "Thanks, Dad! I’ve been wanting to go for a while."
+                    ],
+                    [
+                        "I’m really tired today, Dad.",
+                        "Long day at school?",
+                        "Yeah, I had a lot of assignments to finish.",
+                        "You’ve been working hard. It’s okay to take a break.",
+                        "Thanks, Dad. I’ll rest after dinner."
+                    ]
+                    // Add other conversation variants
+                ],
+
+                brotherConversations: [
+                    [
+                        "Hey, bro!",
+                        "Hey! How's it going?",
+                        "Great, how about you?",
+                        "Same here, just chilling.",
+                        "Wanna play some video games?",
+                        "Sure, I’ll be ready in 10 minutes."
+                    ],
+                    [
+                        "Yo, you took my charger?",
+                        "Maybe.",
+                        "Dude...",
+                        "Relax, it's on your desk.",
+                        "Thanks, man. Next time, just ask.",
+                        "Alright, alright, chill."
+                    ],
+                    [
+                        "Wanna play FIFA?",
+                        "Sure, get the controller.",
+                        "Got it, I’m beating you this time.",
+                        "We’ll see about that."
+                    ],
+                    [
+                        "Did you finish the game?",
+                        "Yeah, it was epic!",
+                        "Who won?",
+                        "I did, but it was a close match.",
+                        "Nice, good game."
+                    ],
+                    [
+                        "Going out tonight?",
+                        "Yeah, with some friends.",
+                        "Cool, have fun.",
+                        "Thanks, I’ll be back later."
+                    ],
+                    [
+                        "You saw my hoodie?",
+                        "Nope, check the laundry.",
+                        "Alright, I’ll go check.",
+                        "Let me know if you find it."
+                    ],
+                    [
+                        "Let’s order pizza.",
+                        "I’m down. What do you want?",
+                        "Pepperoni and extra cheese.",
+                        "Sounds good to me."
+                    ],
+                    [
+                        "You're annoying.",
+                        "Love you too, bro.",
+                        "You always mess with me.",
+                        "It’s how I show I care."
+                    ]
+                ],
+
+                sisterConversations: [
+                    [
+                        "Sis, are you home?",
+                        "Yeah, just got back.",
+                        "What's new?",
+                        "Not much, just chilling.",
+                        "Wanna hang out?",
+                        "Sure, what do you want to do?",
+                        "How about we watch a movie?",
+                        "Sounds perfect."
+                    ],
+                    [
+                        "Can I borrow your top?",
+                        "Which one?",
+                        "The black one.",
+                        "Fine, but return it!",
+                        "I will, promise."
+                    ],
+                    [
+                        "Wanna go shopping tomorrow?",
+                        "Yes please!",
+                        "Great! I’ll pick you up at 10.",
+                        "Perfect, see you then!"
+                    ],
+                    [
+                        "Did you take my makeup?",
+                        "Nope.",
+                        "Liar.",
+                        "Okay, fine, I used it for a second.",
+                        "I knew it!",
+                        "I’m sorry, I’ll clean it up for you."
+                    ],
+                    [
+                        "Movie night?",
+                        "Popcorn ready!",
+                        "Got my blanket, let’s go!",
+                        "Already set up, pick a movie!"
+                    ],
+                    [
+                        "You okay?",
+                        "Yeah, just tired.",
+                        "Let’s talk later.",
+                        "Okay, take care."
+                    ],
+                    [
+                        "Help me pick an outfit.",
+                        "Photo or FaceTime?",
+                        "FaceTime is easier.",
+                        "Alright, let me see!"
+                    ],
+                    [
+                        "Thanks for covering for me.",
+                        "Don’t make it a habit.",
+                        "I won’t, I swear.",
+                        "Just keep it between us."
+                    ]
+                ],
+
+                lovedOneMaleConversations: [
+                    [
+                        "Hey, love, how’s your day going?",
+                        "It’s going well! Just a bit hectic. How about you?",
+                        "Same here. Just busy with work.",
+                        "I can't wait for this day to be over. Want to do something tonight?",
+                        "That sounds amazing! I’ve been looking forward to seeing you.",
+                        "Me too. Let’s just relax and enjoy each other's company.",
+                        "Sounds like the perfect plan to me.",
+                        "I’m so lucky to have you."
+                    ],
+                    [
+                        "Do you remember our first date?",
+                        "Of course! How could I forget?",
+                        "I was so nervous, but you made me feel so comfortable.",
+                        "You were adorable. I knew from that moment that I liked you a lot.",
+                        "I felt the same way. I knew we had something special from the start.",
+                        "It was a perfect day. I’ll never forget it.",
+                        "Me neither. It was the beginning of something amazing."
+                    ],
+                    [
+                        "I’ve been thinking about our future together.",
+                        "Really? What’s on your mind?",
+                        "Just about how lucky I am to be with you and what’s ahead for us.",
+                        "I’ve been thinking about it too. I can’t wait to see where life takes us.",
+                        "Neither can I. I feel like we’re unstoppable together.",
+                        "I know we are. As long as we’re together, I know everything will be perfect.",
+                        "You’re absolutely right. I can’t wait to see where we go from here."
+                    ],
+                    [
+                        "I’m so grateful to have you in my life.",
+                        "Aww, I feel the same way. You’re everything to me.",
+                        "You make my world so much brighter.",
+                        "You do the same for me. I don’t know what I’d do without you.",
+                        "We make each other better, don’t we?",
+                        "We really do. Together, we’re unstoppable.",
+                        "I promise to always be by your side, no matter what.",
+                        "And I’ll be there for you, always."
+                    ],
+                    [
+                        "How are you feeling today, babe?",
+                        "A little tired, but I’m okay. How about you?",
+                        "I’m good, just thinking about you.",
+                        "That always makes me smile. You’re so thoughtful.",
+                        "I try. You mean everything to me.",
+                        "You mean the world to me too. I love you.",
+                        "I love you more than anything, and I’ll keep showing it every day."
+                    ],
+                    [
+                        "I can’t wait to see you tonight.",
+                        "Same here, I’ve been counting down the hours.",
+                        "It’s going to be so nice to finally relax together.",
+                        "I know. Let’s make tonight special, just the two of us.",
+                        "Sounds perfect. I’m looking forward to it.",
+                        "Me too, love. It’ll be a night to remember."
+                    ],
+                    [
+                        "I’ve been feeling a bit stressed lately.",
+                        "Do you want to talk about it?",
+                        "Yeah, I just have a lot on my plate with work.",
+                        "I understand. Just remember, you don’t have to do it alone.",
+                        "Thanks, babe. Your support means everything to me.",
+                        "You know I’m always here for you, no matter what.",
+                        "I’m lucky to have you by my side.",
+                        "And I’m lucky to have you too."
+                    ],
+                    [
+                        "I miss you so much.",
+                        "I miss you too, more than you know.",
+                        "I can't wait for us to be together again.",
+                        "Same here. Every day feels a little longer without you.",
+                        "But knowing I’ll see you soon makes everything better.",
+                        "It does for me too. You’re always in my thoughts.",
+                        "I love you more than words can express.",
+                        "I love you too, always and forever."
+                    ]
+                ],
+
+                lovedOneFemaleConversations: [
+                    [
+                        "Hi, darling!",
+                        "Hey, honey!",
+                        "How was your day?",
+                        "Pretty good, a bit busy though.",
+                        "Same here. I’ve missed you.",
+                        "I’ve missed you too. Can't wait to see you.",
+                        "Let's make plans for the weekend.",
+                        "That sounds perfect. I’ll make sure we have a great time."
+                    ],
+                    [
+                        "I was thinking about you today.",
+                        "Aww, that’s so sweet! What about me?",
+                        "Just how lucky I am to have you.",
+                        "You're making me blush.",
+                        "I mean it, though. You’re incredible.",
+                        "You're the best. I feel the same way about you.",
+                        "I can’t wait to spend more time together.",
+                        "Neither can I, babe. We deserve it."
+                    ],
+                    [
+                        "Hey, love, how’s your day going?",
+                        "It’s been a long day, but I’m glad it’s almost over.",
+                        "I feel you. I’m ready to just relax and forget about work.",
+                        "Same here. What should we do tonight?",
+                        "How about a movie and some takeout?",
+                        "Sounds perfect. I’ve been craving Chinese food.",
+                        "Then it’s settled. Let’s make it a cozy night in.",
+                        "I’m looking forward to it already."
+                    ],
+                    [
+                        "I’ve been thinking about our future together.",
+                        "Really? What’s on your mind?",
+                        "Just about how lucky I am to have you, and how much I want to build a life with you.",
+                        "I feel the same way. We’re so lucky to have each other.",
+                        "We are. I can’t imagine my life without you in it.",
+                        "Neither can I. I want to be with you forever.",
+                        "Me too. Our future is going to be amazing, I just know it.",
+                        "I can't wait to start that chapter with you."
+                    ],
+                    [
+                        "I love waking up next to you.",
+                        "I feel the same way. Every morning feels like a fresh start with you.",
+                        "It’s my favorite part of the day.",
+                        "Mine too. I love those quiet moments when it’s just us.",
+                        "They’re the best. We should make time for them more often.",
+                        "Absolutely. I cherish every moment we spend together.",
+                        "Me too, babe. You're everything I need.",
+                        "And you're everything I want. I’m so lucky."
+                    ],
+                    [
+                        "I miss you so much.",
+                        "I miss you too, more than you know.",
+                        "Every day feels so long without you.",
+                        "I know the feeling. I can't wait to hold you again.",
+                        "Soon, I promise. Let’s plan something special for this weekend.",
+                        "That sounds like a great idea. I can’t wait to see you.",
+                        "Me neither. I’ll be counting down the days.",
+                        "I’ll be right here waiting for you."
+                    ],
+                    [
+                        "Do you remember our first kiss?",
+                        "How could I forget? It was perfect.",
+                        "I was so nervous, but you made me feel at ease.",
+                        "You looked so cute, I couldn’t resist.",
+                        "I felt the same way. It was like time stopped.",
+                        "It definitely felt like magic. I’ll never forget it.",
+                        "I’ll cherish that moment forever.",
+                        "Me too. It was the start of something special."
+                    ],
+                    [
+                        "What do you want to do for our anniversary?",
+                        "I was thinking maybe we could go to that restaurant we love.",
+                        "That sounds perfect! I’ve been craving their food.",
+                        "Same here. We should make it a whole evening – dinner and then a walk under the stars.",
+                        "I love that idea. It’ll be so romantic.",
+                        "I can’t wait to celebrate with you. You make everything special.",
+                        "You’re the one who makes everything special. I’m so grateful.",
+                        "I feel the same way. This will be a night to remember."
+                    ]
+                ]
+
+
             },
             ru: {
                 enterTelegramId: 'Введите ID Telegram',
@@ -386,7 +814,505 @@
                 enterDeletionCode: 'Введите код для удаления данных',
                 deletionCodeIncorrect: 'Неверный код!',
                 getDeletionCode: 'Код удаления можно взять у @Clickerstart_bot',
-                deletionCodePlaceholder: 'Код удаления'
+                deletionCodePlaceholder: 'Код удаления',
+                momConversations: [
+                    [
+                        "Привет, мама!",
+                        "Привет, дорогой!",
+                        "Как дела?",
+                        "Хорошо, спасибо!",
+                        "Что нового?",
+                        "Ничего особенного, как обычно.",
+                        "Как твои дела?",
+                        "Хорошо, вот только немного устала."
+                    ],
+                    [
+                        "Мам, можно я пойду погулять?",
+                        "Куда собрался?",
+                        "В парк с друзьями.",
+                        "Возвращайся к 8 вечера.",
+                        "Хорошо, но не задерживайся.",
+                        "Не переживай, я буду вовремя.",
+                        "Береги себя, не забудь одеться тепло.",
+                        "Спасибо, мам, я постараюсь!"
+                    ],
+                    [
+                        "Мам, тебе что-нибудь нужно?",
+                        "Нет, я в порядке, спасибо!",
+                        "Окей, просто проверяю.",
+                        "Ты уверена?",
+                        "Да, уверена, но спасибо, что спросил.",
+                        "Хорошо, если что, сообщи.",
+                        "Обязательно, люблю тебя.",
+                        "И я тебя люблю!"
+                    ],
+                    [
+                        "Мам, я что-то не могу найти свои ключи.",
+                        "Ты проверял в карманах?",
+                        "Да, нету там.",
+                        "Попробуй посмотреть на столе или в сумке.",
+                        "Ага, точно, они в сумке!",
+                        "Вот видишь, всегда нужно искать в самых очевидных местах.",
+                        "Спасибо, мам, ты — настоящая спасительница.",
+                        "Всегда рад помочь, дорогой."
+                    ],
+                    [
+                        "Мам, можно мне с друзьями на выходных поехать на дачу?",
+                        "Как вы доберётесь?",
+                        "Мы поедем на автобусе, всё будет безопасно.",
+                        "Хорошо, но не забудь позвонить, когда приедешь.",
+                        "Обязательно! И мы поедем пораньше, чтобы было больше времени для отдыха.",
+                        "Отлично! Наслаждайтесь, но не забывайте о безопасности.",
+                        "Конечно, мам, всё будет в порядке.",
+                        "Я верю в тебя."
+                    ],
+                    [
+                        "Мам, я купил новую куртку!",
+                        "О, как здорово! Покажи её.",
+                        "Вот, она тёмно-синяя, с капюшоном.",
+                        "Очень стильная, тебе идёт.",
+                        "Спасибо! Я рад, что тебе нравится.",
+                        "Я всегда знал, что у тебя хороший вкус.",
+                        "Ты тоже всегда хорошо выглядишь, мама.",
+                        "Спасибо, дорогой. Ты меня радуешь!"
+                    ],
+                    [
+                        "Мам, ты давно не звонила. Всё ли в порядке?",
+                        "Да, просто немного занята.",
+                        "Понимаю, не переживай.",
+                        "Не переживай, всё хорошо. Просто работа забирает много времени.",
+                        "Я рад, что всё в порядке. Ты мне не говорила, что устала.",
+                        "Я просто не хочу тебя беспокоить, но ты прав, нужно больше отдыхать.",
+                        "Да, обязательно отдыхай. Мы с тобой поговорим позже.",
+                        "Хорошо, спасибо, что позвонил."
+                    ],
+                    [
+                        "Мам, ты помнишь, когда мне нужно записаться на экзамен?",
+                        "Да, ты должен записаться до конца месяца.",
+                        "О, точно! Спасибо, что напомнила.",
+                        "Всегда рад помочь. Ты готовишься?",
+                        "Да, немного. Надеюсь, успею всё подготовить.",
+                        "Не переживай, ты справишься.",
+                        "Спасибо за поддержку, мам.",
+                        "Ты всегда можешь на меня рассчитывать."
+                    ]
+                ],
+
+                dadConversations: [
+                    [
+                        "Пап, как дела?",
+                        "Нормально, сынок.",
+                        "Что делаешь?",
+                        "Смотрю телевизор.",
+                        "Что по телевизору интересного?",
+                        "Не знаю, просто новости.",
+                        "Ясно. Может, что-то поменяем?",
+                        "Да, можно. Что ты хочешь посмотреть?"
+                    ],
+                    [
+                        "Пап, можешь мне помочь?",
+                        "Конечно, что нужно?",
+                        "Нужно помочь с домашним заданием.",
+                        "Что именно не понятно?",
+                        "Вот, например, этот вопрос по математике.",
+                        "А, понятно! Давай, я объясню.",
+                        "Спасибо, пап, ты — настоящий учитель!",
+                        "Ну, это не сложно, главное разобраться."
+                    ],
+                    [
+                        "Пап, ты когда-нибудь учил меня водить?",
+                        "Конечно, помню, как мы катались на даче.",
+                        "Да, это было весело. Но ты меня уже научил!",
+                        "Я рад, что ты смог всё запомнить.",
+                        "Теперь, когда ты сдал на права, мы можем ездить вместе.",
+                        "Будет здорово! Я рад, что ты мне доверяешь.",
+                        "Ты уже готов выезжать на дорогу?",
+                        "Да, только немного волнуюсь, но я справлюсь!"
+                    ],
+                    [
+                        "Пап, как ты себя чувствуешь?",
+                        "Я немного устал, но всё в порядке.",
+                        "Ты точно не болен?",
+                        "Нет-нет, просто много работы.",
+                        "Надо бы тебе отдохнуть.",
+                        "Ты прав, но пока нет времени.",
+                        "Ну, постарайся хотя бы немного расслабиться.",
+                        "Обязательно, спасибо, что беспокоишься."
+                    ],
+                    [
+                        "Пап, ты помнишь, как мне нужно заполнить форму для колледжа?",
+                        "Да, ты должен отправить её через интернет до конца недели.",
+                        "Окей, я займусь этим.",
+                        "Не забудь проверить все данные перед отправкой.",
+                        "Обязательно, я внимательно всё прочитаю.",
+                        "Хорошо. Ты обязательно попадёшь в нужный университет!",
+                        "Спасибо за поддержку, пап.",
+                        "Для меня всегда радость помочь."
+                    ],
+                    [
+                        "Пап, мы когда поедем в гараж?",
+                        "В следующий выходной, когда будет время.",
+                        "Окей, я подготовлю инструменты.",
+                        "Хорошо, давай на этой неделе всё проверим.",
+                        "Здорово! Я так люблю, когда мы с тобой что-то чинем.",
+                        "Это всегда весело. Будет возможность что-то новое попробовать.",
+                        "Да, я тоже жду с нетерпением.",
+                        "Тогда договорились, на выходных!"
+                    ],
+                    [
+                        "Пап, как ты думаешь, мне стоит купить новую машину?",
+                        "Ну, если ты можешь себе это позволить, почему бы и нет?",
+                        "Думаю, мне будет удобнее.",
+                        "Если это будет удобно, то почему бы и нет.",
+                        "Я думаю, что ты хорошо обдумаешь этот шаг.",
+                        "Я всегда буду поддерживать твой выбор, сын.",
+                        "Спасибо, пап, ты как всегда прав.",
+                        "Знаю, что ты примешь правильное решение."
+                    ],
+                    [
+                        "Пап, ты когда-нибудь думал об отпуске?",
+                        "Конечно, но пока нет времени.",
+                        "Надо бы съездить куда-нибудь, расслабиться.",
+                        "Ты прав, это всегда полезно.",
+                        "Давай попробуем что-то запланировать на лето.",
+                        "Звучит отлично! Может, съездим на море?",
+                        "Да, хорошая идея. Давай подумаем об этом."
+                    ]
+                ],
+
+                brotherConversations: [
+                    [
+                        "Привет, брат!",
+                        "Привет! Как дела?",
+                        "Отлично, а у тебя?",
+                        "Нормально, немного устал.",
+                        "Понимаю, что-то важное произошло?",
+                        "Да, много работы, но терпимо.",
+                        "Давай встретимся на выходных?",
+                        "Да, давай, я за!"
+                    ],
+                    [
+                        "Слушай, у меня проблемы с компьютером.",
+                        "Что случилось?",
+                        "Он не включается.",
+                        "Попробуй проверить кабели и подключение.",
+                        "Окей, сейчас попробую.",
+                        "Вроде работает, спасибо!",
+                        "Залечил! Ты как всегда в деле.",
+                        "Без проблем, брат. Всегда рад помочь!"
+                    ],
+                    [
+                        "Брат, помнишь, как мы катались на скейтборде?",
+                        "Да, это было весело!",
+                        "Надеюсь, ты не забыл, как делать трюки.",
+                        "Немного, но я не забыл!",
+                        "Я тебя поснимаю на видео, давай покажем, что ты умеешь.",
+                        "Окей, только не смей смеяться.",
+                        "Ты что, я всегда тебя поддерживаю.",
+                        "Да, правда, ты всегда мне помогаешь!"
+                    ],
+                    [
+                        "Как думаешь, стоит ли мне купить новый телефон?",
+                        "Я думаю, это зависит от того, насколько твой старый уже не работает.",
+                        "Ну, он немного старый, но всё ещё работает.",
+                        "Если он тебя устраивает, может, подождёшь немного?",
+                        "Да, возможно, ты прав. Я не хочу тратить деньги зря.",
+                        "Да, иногда лучше подождать, пока появится что-то действительно стоящее.",
+                        "Ладно, посижу ещё с этим.",
+                        "Да, а если что, всегда можно найти хороший вариант через некоторое время."
+                    ],
+                    [
+                        "Брат, а ты бы хотел попробовать съездить на отдых в горы?",
+                        "Это хорошая идея! Мне нравится активный отдых.",
+                        "Я тоже так думаю. Мы бы могли провести время вместе, походить по горам.",
+                        "Да, это будет незабываемо! Тем более, нужно развеяться после всей этой рутины.",
+                        "Точно! Нам стоит найти подходящее место.",
+                        "Я согласен. Будем искать место для этого отпуска.",
+                        "Да, давай подберём что-то интересное.",
+                        "Хорошо, потом вместе обсудим варианты."
+                    ],
+                    [
+                        "Ты когда-нибудь думал о том, чтобы сменить работу?",
+                        "На самом деле, да. Мне нравится моя работа, но иногда хочется чего-то нового.",
+                        "А ты что думаешь об этом?",
+                        "Я тоже думал об этом, но боюсь начать что-то с нуля.",
+                        "Понимаю, это всегда риск, но иногда нужно двигаться вперёд.",
+                        "Ты прав, но всё равно страшно.",
+                        "Я понимаю, брат. Но ты сможешь, если захочешь!",
+                        "Спасибо за поддержку, мне легче об этом думать с тобой."
+                    ],
+                    [
+                        "Брат, как ты думаешь, стоит ли мне начать заниматься спортом?",
+                        "Конечно, это всегда полезно для здоровья!",
+                        "А что ты сам думаешь об этом? Ты тренируешься?",
+                        "Да, я пытаюсь каждый день уделять хотя бы немного времени физической активности.",
+                        "Что ты обычно делаешь?",
+                        "Я бегаю по утрам и занимаюсь упражнениями для тела.",
+                        "Звучит круто! Думаю, я тоже начну с чего-то простого.",
+                        "Да, начни постепенно, и тебе будет всё легче.",
+                        "Спасибо, брат, буду стараться!"
+                    ],
+                    [
+                        "Ты веришь в судьбу?",
+                        "Интересный вопрос. Я думаю, что многие вещи происходят по какой-то причине.",
+                        "А я считаю, что судьба — это просто случайность.",
+                        "Да, возможно, ты прав. Но я думаю, что важно верить в своё будущее.",
+                        "Возможно, ты прав. Это помогает принимать решения.",
+                        "Я всегда думал, что нужно самому строить свою судьбу.",
+                        "Да, каждый из нас ответственен за свои поступки.",
+                        "Ты прав, нужно действовать, а не просто ждать."
+                    ]
+                ],
+
+                sisterConversations: [
+                    [
+                        "Привет, сестра!",
+                        "Привет, как ты?",
+                        "Нормально, немного устала.",
+                        "Что случилось? Почему устала?",
+                        "Просто много работы и учёбы.",
+                        "Я тебя понимаю, сама так часто чувствую.",
+                        "Когда мы с тобой встретимся? Нужно поболтать!",
+                        "Давай на выходных, я с радостью!"
+                    ],
+                    [
+                        "Ты хочешь пойти в кино?",
+                        "Когда?",
+                        "Как насчёт субботы вечером?",
+                        "Отлично, выбери фильм!",
+                        "Хорошо, я выберу что-то интересное.",
+                        "Может, что-то комедийное, чтобы повеселиться?",
+                        "Согласна! Мы давно не смеялись.",
+                        "Именно, нужно расслабиться немного!"
+                    ],
+                    [
+                        "Ты купила новую одежду?",
+                        "Да, купила пару вещей.",
+                        "Что купила?",
+                        "Новый свитер и джинсы.",
+                        "Звучит классно! Ты обязательно в них круто выглядишь.",
+                        "Надеюсь, тебе понравится.",
+                        "Ты всегда отлично одеваешься!",
+                        "Спасибо! Ты всегда меня поддерживаешь."
+                    ],
+                    [
+                        "Как ты думаешь, мне стоит попробовать начать рисовать?",
+                        "Я думаю, тебе точно понравится! Это может быть интересно.",
+                        "А ты умеешь рисовать?",
+                        "Да, но я больше увлекаюсь фотографией.",
+                        "Мне кажется, рисование — это хороший способ расслабиться.",
+                        "Ты прав, мне тоже так кажется.",
+                        "Ну, тогда пробуй! Я уверена, что у тебя получится.",
+                        "Спасибо, я попробую!"
+                    ],
+                    [
+                        "Ты давно не приезжала ко мне, как ты?",
+                        "Всё хорошо, просто была очень занята.",
+                        "Я скучаю по тебе!",
+                        "Я тоже скучаю! Давай встретимся на выходных?",
+                        "Да, с радостью. Когда ты свободна?",
+                        "Думаю, в воскресенье подойдёт.",
+                        "Отлично, ждём с нетерпением!",
+                        "Я тоже! Уже давно хотелось пообщаться."
+                    ],
+                    [
+                        "Ты когда-нибудь думала об открытии своего бизнеса?",
+                        "Да, я часто об этом думаю.",
+                        "Что ты бы хотела открыть?",
+                        "Может быть, маленький кафе или студию для йоги.",
+                        "Звучит интересно! Ты бы справилась с этим.",
+                        "Спасибо! Но это страшно начинать.",
+                        "Ты сможешь, главное — не бояться делать первый шаг.",
+                        "Ты права, может, мне стоит начать с малого."
+                    ],
+                    [
+                        "Как ты думаешь, мне стоит сменить имидж?",
+                        "Да, иногда это полезно, можно попробовать что-то новое.",
+                        "Может, изменить цвет волос?",
+                        "Почему бы и нет? Это не так сложно.",
+                        "Мне нравится мой цвет, но может, стоит немного освежить.",
+                        "Ты всегда выглядишь прекрасно, так что выбор за тобой!",
+                        "Спасибо, буду думать над этим.",
+                        "Думаю, это хорошая идея!"
+                    ],
+                    [
+                        "Ты уже слышала последние новости?",
+                        "Нет, что случилось?",
+                        "Вчера был концерт нашей любимой группы!",
+                        "О, как жалко, что я пропустила!",
+                        "Давай на следующий раз поедем вместе!",
+                        "Согласна, это будет круто!",
+                        "Я уже в предвкушении!",
+                        "Давай, будет весело!"
+                    ]
+                ],
+
+                lovedOneMaleConversations: [
+                    [
+                        "Привет, моя любовь!",
+                        "Привет, моя радость!",
+                        "Как ты сегодня?",
+                        "Хорошо, просто немного устал с работы.",
+                        "Тебе нужно отдохнуть!",
+                        "Да, ты права, уже планировал немного расслабиться.",
+                        "Когда ты вернешься домой?",
+                        "Через пару часов, буду тебя ждать!"
+                    ],
+                    [
+                        "Ты помнишь наше первое свидание?",
+                        "Конечно, я до сих пор помню, как ты выглядела.",
+                        "Ты был таким уверенным, я тогда немного волновалась.",
+                        "Ты так чудесно об этом говоришь.",
+                        "Потому что для меня это был особенный день.",
+                        "Ты всегда знаешь, как сделать меня счастливой.",
+                        "Я так рад, что мы нашли друг друга.",
+                        "Я тоже, это лучший момент в моей жизни."
+                    ],
+                    [
+                        "Как прошёл твой день?",
+                        "Сильно устал, много работы.",
+                        "Ты должен больше отдыхать!",
+                        "Я знаю, но бывает тяжело совмещать всё.",
+                        "Я тебя понимаю, нужно как-то находить баланс.",
+                        "Да, ты прав. Но ты всегда меня поддерживаешь.",
+                        "Я буду рядом, всегда.",
+                        "Спасибо, ты самый лучший."
+                    ],
+                    [
+                        "Ты когда-нибудь думал о будущем?",
+                        "Да, я часто думаю о том, как мы будем жить вместе.",
+                        "Я тоже мечтаю об этом.",
+                        "Как ты представляешь наше будущее?",
+                        "Я хочу, чтобы оно было наполнено счастьем и приключениями.",
+                        "Я готов поддерживать тебя в любом начинании.",
+                        "Ты всегда поддерживаешь меня, это так важно.",
+                        "Ты знаешь, что я готов быть с тобой всегда."
+                    ],
+                    [
+                        "Ты скучаешь по мне?",
+                        "Конечно, очень скучаю!",
+                        "Я тоже тебя сильно люблю и скучаю.",
+                        "Когда ты приедешь ко мне?",
+                        "Завтра вечером буду у тебя.",
+                        "Ты для меня всё!",
+                        "Ты мой мир, не переживай, скоро увидимся.",
+                        "С нетерпением жду встречи!"
+                    ],
+                    [
+                        "Мне кажется, я тебе когда-нибудь говорил, как сильно я тебя люблю?",
+                        "Ты говоришь это каждый день, и мне это так приятно.",
+                        "Но правда, я тебя очень люблю.",
+                        "Я тоже, и ты знаешь это.",
+                        "Каждый день, который я провожу с тобой, — это счастье.",
+                        "Ты всегда умеешь заставить меня улыбаться.",
+                        "Ты моя опора, я без тебя не представляю своей жизни.",
+                        "Я всегда буду рядом с тобой."
+                    ],
+                    [
+                        "Ты веришь в любовь с первого взгляда?",
+                        "Я верю, потому что я испытал это, когда увидел тебя.",
+                        "Ты такой романтичный.",
+                        "Я искренне говорю, ты — моя судьба.",
+                        "Ты заставляешь меня чувствовать себя особенной.",
+                        "Я хочу провести с тобой всю свою жизнь.",
+                        "Я тоже, я хочу строить наше будущее вместе.",
+                        "Ты — моя любовь на всю жизнь."
+                    ],
+                    [
+                        "Как ты думаешь, нам стоит поехать в отпуск?",
+                        "Да, это отличная идея! Мы можем отдохнуть вместе.",
+                        "Ты хочешь поехать в море?",
+                        "Да, я всегда мечтал провести время на пляже.",
+                        "Я с радостью поеду с тобой куда угодно.",
+                        "Мне нужно время для нас, чтобы расслабиться и насладиться друг другом.",
+                        "Давай начнём планировать поездку!",
+                        "Будет здорово!"
+                    ]
+                ],
+
+                lovedOneFemaleConversations: [
+                    [
+                        "Привет, любимая!",
+                        "Привет, мой дорогой!",
+                        "Как ты сегодня?",
+                        "Всё хорошо, просто немного устала.",
+                        "Ты должна больше отдыхать.",
+                        "Да, ты прав, мне нужно выспаться.",
+                        "Когда мы с тобой встретимся?",
+                        "Завтра, как только освобожусь, обязательно позвоню."
+                    ],
+                    [
+                        "Как прошёл твой день?",
+                        "Немного тяжело, но я справилась.",
+                        "Ты всегда так сильна, я горжусь тобой.",
+                        "Ты всегда поддерживаешь меня, и это важно.",
+                        "Ты заслуживаешь отдых.",
+                        "Да, думаю, мне нужно немного расслабиться.",
+                        "Может, вечером посмотрим фильм вместе?",
+                        "Отличная идея, мне будет приятно провести время с тобой."
+                    ],
+                    [
+                        "Ты помнишь, как мы впервые встретились?",
+                        "Конечно, я никогда не забуду этот момент!",
+                        "Ты был таким милым и добрым.",
+                        "Ты тоже, я сразу почувствовал, что ты особенная.",
+                        "Это было потрясающе, я думал, что просто не могу найти таких людей.",
+                        "Я рада, что мы нашли друг друга.",
+                        "Я тоже, это лучший момент в моей жизни.",
+                        "Ты — мой мир."
+                    ],
+                    [
+                        "Ты когда-нибудь думала о том, чтобы вместе работать над проектом?",
+                        "Да, это отличная идея!",
+                        "Что бы мы делали?",
+                        "Может, что-то в сфере дизайна или маркетинга?",
+                        "Ты в этом очень хороша, я уверен, нам будет интересно.",
+                        "Я тоже об этом подумала, но нам нужно время для этого.",
+                        "Постепенно начнём, так будет проще.",
+                        "Да, это будет нашим маленьким проектом."
+                    ],
+                    [
+                        "Ты любишь путешествовать?",
+                        "Да, обожаю! Особенно в новые места.",
+                        "Мне тоже нравится путешествовать.",
+                        "Куда ты бы хотела поехать?",
+                        "Я мечтаю побывать в Италии.",
+                        "Я тоже! Это будет чудесно.",
+                        "Давай начнём планировать поездку?",
+                        "Согласна, давай сделаем это!"
+                    ],
+                    [
+                        "Ты когда-нибудь думала о том, чтобы изменить имидж?",
+                        "Да, иногда думаю о смене стиля.",
+                        "Что бы ты хотела изменить?",
+                        "Может быть, поменять прическу?",
+                        "Да, это всегда хорошая идея.",
+                        "Ты мне поможешь выбрать?",
+                        "Конечно, с радостью помогу.",
+                        "Спасибо, с тобой всегда легче принимать решения."
+                    ],
+                    [
+                        "Ты веришь, что с каждым днём становится только лучше?",
+                        "Да, верю. Всё зависит от нас, от того, как мы воспринимаем мир.",
+                        "Ты всегда такая оптимистичная.",
+                        "Это помогает мне смотреть на жизнь с другой стороны.",
+                        "Ты права, давай постараемся ценить каждый момент.",
+                        "Я согласен, давай наслаждаться каждым днём.",
+                        "Ты всегда умеешь вдохновлять меня.",
+                        "Я рада, что могу быть для тебя поддержкой."
+                    ],
+                    [
+                        "Ты когда-нибудь думала о будущем нашей семьи?",
+                        "Конечно, я часто думаю о том, как будем жить в будущем.",
+                        "Ты хочешь детей?",
+                        "Да, я бы хотела построить семью с тобой.",
+                        "Я тоже, я мечтаю об этом.",
+                        "Мы будем замечательной семьёй.",
+                        "Я так рад, что ты со мной.",
+                        "Я тоже, буду рядом с тобой всегда."
+                    ]
+                ]
+
             }
         };
 
