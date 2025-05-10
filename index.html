@@ -161,7 +161,10 @@
         <div id="deleteDataScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="requestDataDeletion">Запрос на удаление данных</h2>
             <h4 class="mb-4 text-center" data-translate="enterDeletionCode">Введите код для удаления данных</h4>
-            <input id="deletionCode" type="text" placeholder="Код удаления" class="w-full p-2 mb-4 border rounded">
+            <input id="deletionCode" type="text" placeholder="" data-translate-placeholder="deletionCodePlaceholder" class="w-full p-2 mb-4 border rounded">
+            <h4 class="mb-4 text-center">
+                <a href="https://t.me/Clickerstart_bot" target="_blank" class="text-blue-500" data-translate="getDeletionCode">Код удаления можно взять у @Clickerstart_bot</a>
+            </h4>
             <button onclick="submitDeletionCode()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="submit">Отправить</button>
             <button onclick="backToSettings()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
             <p id="errorDeletion" class="error hidden mt-2"></p>
@@ -321,7 +324,9 @@
                 limitsFromPromos: 'Limits from Promos: ',
                 requestDataDeletion: 'Request Data Deletion',
                 enterDeletionCode: 'Enter the code to delete data',
-                deletionCodeIncorrect: 'Invalid code!'
+                deletionCodeIncorrect: 'Invalid code!',
+                getDeletionCode: 'You can get the deletion code from @Clickerstart_bot',
+                deletionCodePlaceholder: 'Deletion code'
             },
             ru: {
                 enterTelegramId: 'Введите ID Telegram',
@@ -379,7 +384,9 @@
                 limitsFromPromos: 'Получено лимитов от промокодов: ',
                 requestDataDeletion: 'Запрос на удаление данных',
                 enterDeletionCode: 'Введите код для удаления данных',
-                deletionCodeIncorrect: 'Неверный код!'
+                deletionCodeIncorrect: 'Неверный код!',
+                getDeletionCode: 'Код удаления можно взять у @Clickerstart_bot',
+                deletionCodePlaceholder: 'Код удаления'
             }
         };
 
@@ -747,6 +754,11 @@
                 if (key === 'selectGender' && userData.currentUsername) {
                     element.textContent += userData.currentUsername;
                 }
+            });
+            const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                element.placeholder = translations[userData.language][key];
             });
             updateLimitsDisplay();
             updatePromoStatsDisplay();
