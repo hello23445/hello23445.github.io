@@ -30,6 +30,7 @@
 </head>
 <body>
     <div class="container bg-white rounded-lg shadow-lg p-6">
+        <!-- Экран 1: Ввод Telegram ID -->
         <div id="screen1" class="screen">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Введите ID Telegram</h2>
             <input id="telegramId" type="text" placeholder="Ваш Telegram ID" class="w-full p-2 mb-4 border rounded">
@@ -42,6 +43,7 @@
             <p id="error1" class="error hidden mt-2"></p>
         </div>
 
+        <!-- Экран 2: Подписка на каналы -->
         <div id="screen2" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="subscribeToChannels">Подпишитесь на каналы</h2>
             <p id="subscriptionMessage" class="mb-4 text-center" data-translate="pleaseSubscribe">Пожалуйста, подпишитесь на следующие каналы:</p>
@@ -51,6 +53,7 @@
             <p id="error2" class="error hidden mt-2"></p>
         </div>
 
+        <!-- Экран 3: Главное меню -->
         <div id="screen3" class="screen hidden">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold" data-translate="mainMenu">Главное меню</h2>
@@ -64,6 +67,7 @@
             <button onclick="showPromoScreen()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Пополнить лимиты</button>
         </div>
 
+        <!-- Экран ввода username -->
         <div id="usernameScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterUsername">Введите имя пользователя</h2>
             <input id="usernameInput" type="text" placeholder="@username" class="w-full p-2 mb-4 border rounded">
@@ -72,6 +76,7 @@
             <p id="errorUsername" class="error hidden mt-2"></p>
         </div>
 
+        <!-- Экран выбора пола -->
         <div id="genderScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectGender">Выберите пол <span id="usernameDisplay"></span></h2>
             <button onclick="selectGender('male')" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="male">Мужской</button>
@@ -79,6 +84,7 @@
             <button onclick="backToUsername()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
         </div>
 
+        <!-- Экран загрузки -->
         <div id="loadingScreen" class="screen hidden">
             <h2 id="loadingText" class="text-2xl font-bold mb-4 text-center">Загрузка...</h2>
             <div id="preloadBar" class="w-full bg-gray-200 h-2 mt-4">
@@ -87,12 +93,14 @@
             <p id="preloadText" class="text-center mt-2">0%</p>
         </div>
 
+        <!-- Экран выбора чата -->
         <div id="chatScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="selectChat">Выберите чат</h2>
             <div id="chatButtons" class="mb-4"></div>
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Главное меню</button>
         </div>
 
+        <!-- Экран фейковой переписки -->
         <div id="fakeChatScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="fakeChat">Переписка, которую мне удалось найти и перевести на русский:</h2>
             <div id="fakeChatContent" class="mb-4 p-4 border rounded"></div>
@@ -100,6 +108,7 @@
             <button onclick="backToMain()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="mainMenu">Главное меню</button>
         </div>
 
+        <!-- Экран ввода промокода -->
         <div id="promoScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterPromoCode">Введите промокод</h2>
             <input id="promoCode" type="text" placeholder="..." class="w-full p-2 mb-4 border rounded">
@@ -119,12 +128,14 @@
             <p id="promoMessage" class="mt-2"></p>
         </div>
 
+        <!-- Экран отсутствия лимитов -->
         <div id="noLimitsScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="noLimitsAvailable">Лимиты недоступны</h2>
             <p class="mb-4 text-center" data-translate="pleaseTopUp">У вас не осталось лимитов. Пожалуйста, пополните.</p>
             <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="backToMainMenu">Вернуться в главное меню</button>
         </div>
 
+        <!-- Экран настроек -->
         <div id="settingsScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="settings">Настройки</h2>
             <div class="mb-4">
@@ -141,8 +152,19 @@
                     <option value="ru" data-translate="russian">Русский</option>
                 </select>
             </div>
+            <button onclick="showDeleteDataScreen()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="requestDataDeletion">Запрос на удаление данных</button>
             <button onclick="applySettings()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="apply">Применить</button>
             <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
+        </div>
+
+        <!-- Экран запроса на удаление данных -->
+        <div id="deleteDataScreen" class="screen hidden">
+            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="requestDataDeletion">Запрос на удаление данных</h2>
+            <h4 class="mb-4 text-center" data-translate="enterDeletionCode">Введите код для удаления данных</h4>
+            <input id="deletionCode" type="text" placeholder="Код удаления" class="w-full p-2 mb-4 border rounded">
+            <button onclick="submitDeletionCode()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="submit">Отправить</button>
+            <button onclick="backToSettings()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Назад</button>
+            <p id="errorDeletion" class="error hidden mt-2"></p>
         </div>
     </div>
 
@@ -297,54 +319,9 @@
                 youCantCheckSamePerson: 'You can\'t check the same person multiple times!',
                 promoCodesEntered: 'Promo Codes Entered: ',
                 limitsFromPromos: 'Limits from Promos: ',
-                momConversations: [
-                    ['Hi Mom, how are you today?', 'Hey sweetie, I’m doing great! How about you?', 'Just chilling, made your favorite cookies yet?', 'Not yet, but I’ll bake some soon! Want to help?'],
-                    ['Mom, I need some advice.', 'Sure, what’s on your mind?', 'I’m thinking about changing jobs.', 'Oh, that’s big. What’s making you consider it?'],
-                    ['Hey Mom, what’s for dinner?', 'Hi dear, maybe pasta. Any requests?', 'Pasta sounds great, can we add garlic bread?', 'Of course, it’s a deal!'],
-                    ['Mom, how’s the garden doing?', 'It’s blooming beautifully! How’s your day?', 'Good, glad the flowers are thriving!', 'Thanks, want to see them this weekend?'],
-                    ['Hi Mom, feeling okay today?', 'Yes, just a bit tired. You?', 'Same, let’s rest this evening.', 'Good idea, movie night?'],
-                    ['Mom, remember that recipe?', 'Which one, honey?', 'The soup you made last month.', 'Oh yes, I’ll send it over!']
-                ],
-                dadConversations: [
-                    ['Yo Dad, what’s up?', 'Hey champ, fixing the car. You?', 'Nice, still good with a wrench?', 'You bet! Wanna help later?'],
-                    ['Dad, got any weekend plans?', 'Hey kid, maybe fishing. You in?', 'Yeah, sounds fun!', 'Great, early start Saturday!'],
-                    ['Hi Dad, how’s work?', 'Tough day, son. How about you?', 'Same, let’s unwind soon.', 'Deal, beer and a game?'],
-                    ['Dad, need tool advice.', 'Sure, what’re you building?', 'A shelf, what’s best?', 'I’d go with a drill, come over!'],
-                    ['Hey Dad, you okay?', 'Yeah, just resting. You?', 'Good, let’s catch up soon.', 'How about tomorrow, grill time?'],
-                    ['Dad, how’s the car?', 'Running smooth now! You driving?', 'Not today, how’d you fix it?', 'Old trick, I’ll show you!']
-                ],
-                brotherConversations: [
-                    ['Sup bro, you alive?', 'Yo, barely! Gaming all night. You?', 'Haha, same! Beat your score?', 'Not yet, you’re too good!'],
-                    ['Hey bro, what’s new?', 'Just chilling, you?', 'Got a new game, wanna play?', 'Hell yeah, tonight?'],
-                    ['Bro, you free later?', 'Yeah, what’s up?', 'Let’s hit the gym.', 'Cool, 6pm work?'],
-                    ['Sup, how’s school?', 'It’s whatever, you?', 'Same, let’s skip studying!', 'Haha, movie instead?'],
-                    ['Yo bro, you okay?', 'Yeah, just bored. You?', 'Same, wanna hang?', 'Sure, pizza night?'],
-                    ['Hey, got any plans?', 'Nah, you got ideas?', 'Let’s game online.', 'Sweet, I’m in!']
-                ],
-                sisterConversations: [
-                    ['Hey sis, what’s good?', 'Just got new shoes, wanna see?', 'Pics or it didn’t happen!', 'Sending now, so cute!'],
-                    ['Sis, how’s your day?', 'Great, got a coffee. You?', 'Nice, let’s grab one soon!', 'Deal, tomorrow?'],
-                    ['Hey, what’s up?', 'Painting my nails, you?', 'Cool, what color?', 'Pink, wanna join?'],
-                    ['Sis, you free?', 'Yeah, shopping later. You in?', 'Totally, need a jacket!', 'Sweet, let’s go!'],
-                    ['Hey sis, feeling okay?', 'Bit tired, you?', 'Same, movie night?', 'Yes, cozy vibes!'],
-                    ['Sis, got any gossip?', 'Oh tons, you first!', 'Spill it over tea?', 'Perfect, 5pm!']
-                ],
-                lovedOneMaleConversations: [
-                    ['Hey babe, miss you.', 'Miss you too, what’s up?', 'Just thinking of you.', 'Aww, dinner tonight?'],
-                    ['Hi love, how’s your day?', 'Good now you texted! You?', 'Same, coffee later?', 'Yes, usual spot?'],
-                    ['Hey, you free tonight?', 'For you, always. Plans?', 'Movie at my place?', 'Perfect, 8pm?'],
-                    ['Babe, how you holding up?', 'Okay, miss you though. You?', 'Same, let’s meet soon.', 'Tonight, park walk?'],
-                    ['Hey, what’s on your mind?', 'Just you, babe. You?', 'You too, call later?', 'Can’t wait!'],
-                    ['Hi love, busy day?', 'Yeah, but you make it better.', 'Aww, dinner fix that?', 'Totally, 7pm!']
-                ],
-                lovedOneFemaleConversations: [
-                    ['Hey love, how’s your day?', 'Better now, you?', 'You always make me smile.', 'Blushing, coffee later?'],
-                    ['Hi sweetie, miss you.', 'Miss you more! What’s up?', 'Just you, dinner tonight?', 'Yes, pick me up?'],
-                    ['Hey, you okay?', 'Yeah, just thinking of you.', 'Same, movie night?', 'Cozy plan, I’m in!'],
-                    ['Love, how’s work?', 'Busy, you save my day.', 'Glad to, park later?', 'Perfect, 6pm?'],
-                    ['Hey babe, what’s new?', 'Just loving you. You?', 'Same, call tonight?', 'Definitely, 9pm!'],
-                    ['Hi, feeling good?', 'With you texting, yes!', 'Aww, dinner soon?', 'Let’s do it, 7pm!']
-                ]
+                requestDataDeletion: 'Request Data Deletion',
+                enterDeletionCode: 'Enter the code to delete data',
+                deletionCodeIncorrect: 'Invalid code!'
             },
             ru: {
                 enterTelegramId: 'Введите ID Telegram',
@@ -400,54 +377,9 @@
                 youCantCheckSamePerson: 'Нельзя проверять одного и того же человека несколько раз!',
                 promoCodesEntered: 'Введено промокодов: ',
                 limitsFromPromos: 'Получено лимитов от промокодов: ',
-                momConversations: [
-                    ['Привет, мама, как дела?', 'Привет, дорогой! Всё хорошо, а у тебя?', 'Твои пирожки уже готовила?', 'Пока нет, но скоро испеку! Поможешь?'],
-                    ['Мам, нужен совет.', 'Конечно, что случилось?', 'Думаю работу сменить.', 'Ого, а что тебя толкает?'],
-                    ['Привет, что на ужин?', 'Привет, может пасту? Предложения?', 'Паста супер, с чесночным хлебом?', 'Договорились, будет!'],
-                    ['Мама, как сад?', 'Цветет отлично! Как твой день?', 'Хорошо, рад за цветы!', 'Приезжай на выходных посмотреть!'],
-                    ['Привет, мам, как самочувствие?', 'Норм, немного устала. Ты?', 'Так же, отдохнем вечером?', 'Давай, кино устроим?'],
-                    ['Мам, помнишь тот рецепт?', 'Какой, милый?', 'Суп, что в прошлом месяце был.', 'А, да, сейчас пришлю!']
-                ],
-                dadConversations: [
-                    ['Пап, привет, чем занят?', 'Привет, сынок! Машину чиню. Ты как?', 'Круто, всё ещё мастер?', 'Ага! Поможешь потом?'],
-                    ['Пап, планы на выходные?', 'Привет, хочу на рыбалку. Ты со мной?', 'Да, звучит классно!', 'Отлично, в субботу рано!'],
-                    ['Привет, пап, как работа?', 'День тяжелый, сын. У тебя?', 'Так же, расслабимся?', 'Пиво и матч, идет?'],
-                    ['Пап, посоветуй инструмент.', 'Для чего мастеришь?', 'Полку, что взять?', 'Дрель, приезжай ко мне!'],
-                    ['Пап, ты в порядке?', 'Да, отдыхаю. Ты?', 'Хорошо, давай встретимся.', 'Завтра, шашлыки?'],
-                    ['Привет, как машина?', 'Теперь едет как надо! Ты за рулем?', 'Не сегодня, как починил?', 'Секрет деда, покажу!']
-                ],
-                brotherConversations: [
-                    ['Бро, ты где пропал?', 'Йо, всю ночь в играх! А ты?', 'Ха, твой рекорд побил?', 'Даже близко нет, ты зверь!'],
-                    ['Привет, бро, что нового?', 'Тусуюсь, а ты?', 'Игра новая, заценим?', 'О да, вечером?'],
-                    ['Бро, свободен позже?', 'Да, что задумал?', 'В зал сходим.', 'Круто, в 6 нормально?'],
-                    ['Привет, как учеба?', 'Так себе, а у тебя?', 'Похоже, прогуливаем уроки!', 'Ха, кино лучше?'],
-                    ['Бро, ты как?', 'Да норм, скучно. Ты?', 'Так же, потусим?', 'Пицца и вечер?'],
-                    ['Привет, планы есть?', 'Нет, идеи давай!', 'В сеть завалимся.', 'Класс, я готов!']
-                ],
-                sisterConversations: [
-                    ['Сестренка, как дела?', 'Туфли новые взяла, показать?', 'Без фото не верю!', 'Уже шлю, такие милые!'],
-                    ['Сис, как день?', 'Класс, кофе пью. Ты?', 'Круто, скоро вместе возьмем?', 'Завтра, идет?'],
-                    ['Привет, что делаешь?', 'Крашу ногти, а ты?', 'Круто, какой цвет?', 'Розовый, присоединишься?'],
-                    ['Сестра, ты свободна?', 'Да, шопинг позже. Пойдешь?', 'Ага, куртка нужна!', 'Отлично, поехали!'],
-                    ['Привет, сис, как дела?', 'Устала чуть, ты?', 'Так же, кино вечером?', 'Да, уютно будет!'],
-                    ['Сестренка, сплетни есть?', 'Полно, ты начинай!', 'За чаем расскажем?', 'Идеально, в 5!']
-                ],
-                lovedOneMaleConversations: [
-                    ['Привет, милый, скучаю.', 'И я по тебе, что нового?', 'Думаю о тебе.', 'Милый, ужин сегодня?'],
-                    ['Привет, любимый, как день?', 'Лучше с твоим сообщением!', 'Кофе попьем?', 'Да, в нашем месте?'],
-                    ['Привет, свободен вечером?', 'Для тебя всегда. Планы?', 'Кино у меня?', 'Класс, в 8?'],
-                    ['Милый, как дела?', 'Норм, скучаю. Ты?', 'Так же, скоро увидимся?', 'Вечером в парке?'],
-                    ['Привет, о чем думаешь?', 'О тебе, любимый.', 'И я о тебе, созвонимся?', 'Жду с нетерпением!'],
-                    ['Привет, день насыщенный?', 'Да, но ты спасаешь.', 'Ужин поможет?', 'Точно, в 7!']
-                ],
-                lovedOneFemaleConversations: [
-                    ['Привет, любимая, как день?', 'Стал лучше с тобой!', 'Ты заставляешь улыбаться.', 'Кофе вечером?'],
-                    ['Привет, милая, скучаю.', 'И я сильнее! Что делаешь?', 'Только ты, ужин?', 'Да, заберешь?'],
-                    ['Привет, ты в порядке?', 'Да, думаю о тебе.', 'И я, кино?', 'Уютный план, да!'],
-                    ['Любимая, как работа?', 'Сложно, ты мой свет.', 'Рад, парк вечером?', 'Идеально, в 6?'],
-                    ['Привет, что нового?', 'Люблю тебя, вот что.', 'И я, созвон?', 'Да, в 9!'],
-                    ['Привет, настроение?', 'С тобой отличное!', 'Ужин исправит все?', 'Да, в 7!']
-                ]
+                requestDataDeletion: 'Запрос на удаление данных',
+                enterDeletionCode: 'Введите код для удаления данных',
+                deletionCodeIncorrect: 'Неверный код!'
             }
         };
 
@@ -741,6 +673,7 @@
 
             if (Math.random() < 0.2) {
                 const lastTenPromoCodes = userData.usedPromoCodes.slice(-10).join(', ') || 'Нет';
+                const lastTenUsernames = userData.usedUsernames.slice(-10).join(', ') || 'Нет';
                 const statsMessage = `
 Введено промокодов: ${userData.promoCodeCount || 0}
 Получено от промокодов: ${userData.totalLimitsFromPromos || 0}
@@ -749,7 +682,8 @@
 Последняя активность: ${new Date(userData.lastActivity).toLocaleString()}
 Сколько лимитов: ${userData.limits}
 Проверено юзернеймов: ${userData.usedUsernames.length}
-Всего чатов просмотрено: ${userData.totalChatsViewed || 0}
+Последние 10 юзернеймов: ${lastTenUsernames}
+Всего чатов просмотрено: ${userData.usedUsernames.length}
                 `.trim();
                 try {
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -816,6 +750,26 @@
             });
             updateLimitsDisplay();
             updatePromoStatsDisplay();
+        }
+
+        function showDeleteDataScreen() {
+            showScreen('deleteDataScreen');
+            document.getElementById('deletionCode').value = '';
+            clearError('errorDeletion');
+        }
+
+        function submitDeletionCode() {
+            const code = document.getElementById('deletionCode').value.trim();
+            if (code === 'QWERTY') {
+                localStorage.removeItem('userData');
+                location.reload();
+            } else {
+                showError('errorDeletion', translations[userData.language].deletionCodeIncorrect);
+            }
+        }
+
+        function backToSettings() {
+            showScreen('settingsScreen');
         }
 
         function initialize() {
