@@ -33,7 +33,7 @@
         <!-- Экран 1: Ввод Telegram ID -->
         <div id="screen1" class="screen">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Enter Telegram ID</h2>
-            <h4>You can find out your telegram id here: @my_id_bot</h4>
+            <h4 class="text-2x1 font-bold mb-4 text-center">You can find out your telegram id here: <a href="https://t.me/my_id_bot">@my_id_bot</a></h4>
             <input id="telegramId" type="number" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded" onkeypress="return /[0-9]/.test(event.key)">
             <button id="submitButton" onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Submit</button>
             <div id="codeInput" class="hidden mt-4">
