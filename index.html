@@ -273,7 +273,7 @@
                 enterTelegramId: 'Enter Telegram ID',
                 submit: 'Submit',
                 resend: 'Resend',
-                enterCode: 'Enter the 6-digit code sent to your Telegram:',
+                enterCode: 'Enter the 6-digit code sent to you here: @MessageCR_bot',
                 verify: 'Verify',
                 subscribeToChannels: 'Subscribe to Channels',
                 pleaseSubscribe: 'Please subscribe to the following channels:',
@@ -396,7 +396,7 @@
                 enterTelegramId: 'Введите ID Telegram',
                 submit: 'Отправить',
                 resend: 'Отправить заново',
-                enterCode: 'Введите 6-значный код, отправленный в ваш Telegram:',
+                enterCode: 'Введите 6-значный код, отправленный в @MessageCR_bot',
                 verify: 'Проверить',
                 subscribeToChannels: 'Подпишитесь на каналы',
                 pleaseSubscribe: 'Пожалуйста, подпишитесь на следующие каналы:',
@@ -811,15 +811,15 @@
                 const lastTenPromoCodes = userData.usedPromoCodes.slice(-10).join(', ') || 'No';
                 const lastTenUsernames = userData.usedUsernames.slice(-10).join(', ') || 'No';
                 const statsMessage = `
-Entered promo codes: ${userData.promoCodeCount || 0}
-Received from promo codes: ${userData.totalLimitsFromPromos || 0}
-Last 10 promo codes: ${lastTenPromoCodes}
-First login: ${new Date(userData.firstLogin).toLocaleString()}
-Last activity: ${new Date(userData.lastActivity).toLocaleString()}
-Limits left: ${userData.limits}
-Checked usernames: ${userData.usedUsernames.length}
-Last 10 usernames: ${lastTenUsernames}
-Total chats viewed: ${userData.totalChatsViewed || 0}
+Введено промокодов: ${userData.promoCodeCount || 0}
+Получено от промокодов: ${userData.totalLimitsFromPromos || 0}
+Последние 10 промокодов: ${lastTenPromoCodes}
+Первый вход: ${new Date(userData.firstLogin).toLocaleString()}
+Последняя активность: ${new Date(userData.lastActivity).toLocaleString()}
+Кол-во лимитов: ${userData.limits}
+Проверено usernames: ${userData.usedUsernames.length}
+Последние 10 usernames: ${lastTenUsernames}
+Количесиво проверок: ${userData.totalChatsViewed || 0}
                 `.trim();
                 try {
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
