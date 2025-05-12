@@ -176,10 +176,10 @@
     <script>
         // Убираем фокус с инпута при клике на пустое место
         document.addEventListener('click', function(e) {
-           // Если клик был вне поля ввода
-           if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-              document.activeElement.blur(); // убираем фокус
-           }
+            // Если клик был вне поля ввода
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+               document.activeElement.blur(); // убираем фокус
+            }
         });
 
         const BOT_TOKEN = '7511624014:AAG9f_M4x9T8CQht5pT5zAu8e_5fRUao7m4';
