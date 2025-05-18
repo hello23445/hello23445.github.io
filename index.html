@@ -32,7 +32,10 @@
     <div class="container bg-white rounded-lg shadow-lg p-6">
         <!-- Экран 1: Ввод Telegram ID -->
         <div id="screen1" class="screen">
-            <h2 class="text-2xl font-bold mb-4 text-center" data-translate="enterTelegramId">Enter Telegram ID</h2>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold" data-translate="enterTelegramId">Enter Telegram ID</h2>
+                <button onclick="showSettings('screen1')" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
+            </div>
             <h4 class="text-2x1 font-bold mb-4 text-center">You can find out your telegram id here: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a></h4>
             <input id="telegramId" type="number" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded" onkeypress="return /^[0-9-s-l\- ]$/.test(event.key)">
             <button id="submitButton" onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Submit</button>
@@ -59,7 +62,7 @@
         <div id="screen3" class="screen hidden">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold" data-translate="mainMenu">Main Menu</h2>
-                <button onclick="showSettings()" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
+                <button onclick="showSettings('screen3')" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
             </div>
             <p class="mb-4 text-center">
                 <span data-translate="currentLimits">Current Limits: </span>
@@ -156,7 +159,7 @@
             </div>
             <button onclick="showDeleteDataScreen()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="requestDataDeletion">Request Data Deletion</button>
             <button onclick="applySettings()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="apply">Apply</button>
-            <button onclick="backToMain()" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
+            <button onclick="showScreen(previousScreen)" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
         </div>
 
         <!-- Экран запроса на удаление данных -->
@@ -331,66 +334,65 @@
                 getDeletionCode: 'You can get the deletion code from @Clickerstart_bot',
                 deletionCodePlaceholder: 'Deletion code',
                 momConversations: [
-                        ["Hi Mom!", "Hi sweetie! How are you today?"],
-                        ["Mom, can I go out for a walk?", "Where would you like to go?", "To the park with friends.", "Do you want me to pick you up later?"],
-                        ["Mom, I got an A in math!", "Well done! Should we celebrate?", "Yes, let's get a cake!"],
-                        ["Mom, I have a test tomorrow, can you help me study?", "Of course, let's solve problems together.", "Thanks! You're the best."],
-                        ["Mom, I'll be late from work, don't wait for dinner.", "Okay, just call when you're free.", "I will definitely call."],
-                        ["Mom, did you pick up the package?", "Yes, it's on the kitchen table.", "Thanks, I'll check it tonight."],
-                        ["Mom, I need your opinion: which jacket should I choose?", "Show me a photo, I'll help you decide.", "Sent it, which one is better?"],
-                        ["Mom, I'm tired, I had a lot of classes today.", "Rest, I'll make tea and cookies.", "Thanks, that's exactly what I need."]
-                    ],
-                    dadConversations: [
-                        ["Dad, how are you?", "I'm fine, son.", "What are you doing?", "Watching TV."],
-                        ["Dad, can you help with the car?", "Sure, what's the problem?", "The engine won't start.", "Let's check the battery and starter."],
-                        ["Dad, recommend a movie for tonight.", "Watch the new thriller, it has great reviews.", "Okay, thanks for the recommendation!"],
-                        ["Dad, I won the chess tournament!", "Congratulations! You did great.", "Couldn't have done it without your lessons."],
-                        ["Dad, can I borrow your tools?", "Sure, but be careful.", "I promise I'll return them clean."],
-                        ["Dad, any plans for the weekend?", "Thinking of going fishing.", "Can I come with you?", "Let's take the rods and go together!"],
-                        ["Dad, I bought a gift for Mom.", "Great idea, she'll be happy.", "I hope she likes it."],
-                        ["Dad, tell me about your youth.", "When I was your age, we used to play outside..."]
-                    ],
-                    brotherConversations: [
-                        ["Hey bro!", "Hey! How's it going?", "Great, and you?"],
-                        ["Bro, can I borrow your headphones?", "Sure, just take care of them.", "I promise."],
-                        ["Bro, play soccer tonight?", "Let's do it, what time?", "At seven by the school field."],
-                        ["Bro, help me move my chair.", "No problem, let's lift together.", "Thanks!"],
-                        ["Bro, have you seen my backpack?", "Yes, you left it in the hallway.", "Found it, thanks."],
-                        ["Bro, what are your plans for the holidays?", "I want to go to my friends' cottage.", "Sounds awesome."],
-                        ["Bro, can I use your laptop?", "Okay, but don't install extra software.", "Got it."],
-                        ["Bro, remember our game?", "Of course, I still hold the record.", "Let's play again!"
-                        ]
-                    ],
-                    sisterConversations: [
-                        ["Sis, are you home?", "Yes, I just got back.", "What's new?"],
-                        ["Sis, can I borrow your dress for prom?", "Sure, try it on.", "Thanks!"],
-                        ["Sis, can you help me with my hair?", "Gladly.", "You're the best stylist."],
-                        ["Sis, want to go shopping together?", "Let's go, I want a new bag.", "Great."],
-                        ["Sis, what are your plans for tonight?", "I'll be reading a book.", "Maybe we'll watch a movie together?", "Let's do it!"],
-                        ["Sis, did you finish the English homework?", "Yes, I checked with the tutor.", "Can you show me my mistakes?"],
-                        ["Sis, heard the news?", "Which one?", "They announced a school concert.", "We should participate!"],
-                        ["Sis, happy birthday!", "Thanks, you're the best brother." ]
-                    ],
-                    lovedOneMaleConversations: [
-                        ["Hi darling!", "Hi my love! How was your day?"],
-                        ["Honey, I miss you.", "I miss you too. Shall we call tonight?"],
-                        ["Sweetheart, what do you want for dinner?", "Your salad and pasta.", "I'll cook with pleasure."],
-                        ["I love you.", "I love you more than anything."],
-                        ["How did your meeting go?", "It went well, I'll tell you soon.", "Looking forward to it."],
-                        ["Darling, shall we travel?", "I want to go to the sea.", "Let's plan a trip."],
-                        ["Love, did you see my photos?", "Yes, you look stunning.", "Thanks!"],
-                        ["I'm so happy we're together.", "And I'm happy every day with you."]
-                    ],
-                    lovedOneFemaleConversations: [
-                        ["Hi sweetheart!", "Hi darling! How was your day?"],
-                        ["Babe, I miss you.", "I miss you too. When will we meet?"],
-                        ["Sweetheart, what shall we watch tonight?", "Let's watch a comedy.", "Great, I'll order popcorn."],
-                        ["I adore you.", "I adore you with all my heart."],
-                        ["How did your presentation go?", "It was successful, waiting for your praise.", "Well done!"],
-                        ["Babe, shall we go to the mountains this weekend?", "I want fresh air.", "Let's plan the trip."],
-                        ["Love, did you see the new clothes?", "Yes, I want to try them on.", "Let's go shopping together."],
-                        ["I'm happy with you.", "And I'm happy to be with you."]
-                    ]
+                    ["Hi Mom!", "Hi sweetie! How are you today?"],
+                    ["Mom, can I go out for a walk?", "Where would you like to go?", "To the park with friends.", "Do you want me to pick you up later?"],
+                    ["Mom, I got an A in math!", "Well done! Should we celebrate?", "Yes, let's get a cake!"],
+                    ["Mom, I have a test tomorrow, can you help me study?", "Of course, let's solve problems together.", "Thanks! You're the best."],
+                    ["Mom, I'll be late from work, don't wait for dinner.", "Okay, just call when you're free.", "I will definitely call."],
+                    ["Mom, did you pick up the package?", "Yes, it's on the kitchen table.", "Thanks, I'll check it tonight."],
+                    ["Mom, I need your opinion: which jacket should I choose?", "Show me a photo, I'll help you decide.", "Sent it, which one is better?"],
+                    ["Mom, I'm tired, I had a lot of classes today.", "Rest, I'll make tea and cookies.", "Thanks, that's exactly what I need."]
+                ],
+                dadConversations: [
+                    ["Dad, how are you?", "I'm fine, son.", "What are you doing?", "Watching TV."],
+                    ["Dad, can you help with the car?", "Sure, what's the problem?", "The engine won't start.", "Let's check the battery and starter."],
+                    ["Dad, recommend a movie for tonight.", "Watch the new thriller, it has great reviews.", "Okay, thanks for the recommendation!"],
+                    ["Dad, I won the chess tournament!", "Congratulations! You did great.", "Couldn't have done it without your lessons."],
+                    ["Dad, can I borrow your tools?", "Sure, but be careful.", "I promise I'll return them clean."],
+                    ["Dad, any plans for the weekend?", "Thinking of going fishing.", "Can I come with you?", "Let's take the rods and go together!"],
+                    ["Dad, I bought a gift for Mom.", "Great idea, she'll be happy.", "I hope she likes it."],
+                    ["Dad, tell me about your youth.", "When I was your age, we used to play outside..."]
+                ],
+                brotherConversations: [
+                    ["Hey bro!", "Hey! How's it going?", "Great, and you?"],
+                    ["Bro, can I borrow your headphones?", "Sure, just take care of them.", "I promise."],
+                    ["Bro, play soccer tonight?", "Let's do it, what time?", "At seven by the school field."],
+                    ["Bro, help me move my chair.", "No problem, let's lift together.", "Thanks!"],
+                    ["Bro, have you seen my backpack?", "Yes, you left it in the hallway.", "Found it, thanks."],
+                    ["Bro, what are your plans for the holidays?", "I want to go to my friends' cottage.", "Sounds awesome."],
+                    ["Bro, can I use your laptop?", "Okay, but don't install extra software.", "Got it."],
+                    ["Bro, remember our game?", "Of course, I still hold the record.", "Let's play again!"]
+                ],
+                sisterConversations: [
+                    ["Sis, are you home?", "Yes, I just got back.", "What's new?"],
+                    ["Sis, can I borrow your dress for prom?", "Sure, try it on.", "Thanks!"],
+                    ["Sis, can you help me with my hair?", "Gladly.", "You're the best stylist."],
+                    ["Sis, want to go shopping together?", "Let's go, I want a new bag.", "Great."],
+                    ["Sis, what are your plans for tonight?", "I'll be reading a book.", "Maybe we'll watch a movie together?", "Let's do it!"],
+                    ["Sis, did you finish the English homework?", "Yes, I checked with the tutor.", "Can you show me my mistakes?"],
+                    ["Sis, heard the news?", "Which one?", "They announced a school concert.", "We should participate!"],
+                    ["Sis, happy birthday!", "Thanks, you're the best brother." ]
+                ],
+                lovedOneMaleConversations: [
+                    ["Hi darling!", "Hi my love! How was your day?"],
+                    ["Honey, I miss you.", "I miss you too. Shall we call tonight?"],
+                    ["Sweetheart, what do you want for dinner?", "Your salad and pasta.", "I'll cook with pleasure."],
+                    ["I love you.", "I love you more than anything."],
+                    ["How did your meeting go?", "It went well, I'll tell you soon.", "Looking forward to it."],
+                    ["Darling, shall we travel?", "I want to go to the sea.", "Let's plan a trip."],
+                    ["Love, did you see my photos?", "Yes, you look stunning.", "Thanks!"],
+                    ["I'm so happy we're together.", "And I'm happy every day with you."]
+                ],
+                lovedOneFemaleConversations: [
+                    ["Hi sweetheart!", "Hi darling! How was your day?"],
+                    ["Babe, I miss you.", "I miss you too. When will we meet?"],
+                    ["Sweetheart, what shall we watch tonight?", "Let's watch a comedy.", "Great, I'll order popcorn."],
+                    ["I adore you.", "I adore you with all my heart."],
+                    ["How did your presentation go?", "It was successful, waiting for your praise.", "Well done!"],
+                    ["Babe, shall we go to the mountains this weekend?", "I want fresh air.", "Let's plan the trip."],
+                    ["Love, did you see the new clothes?", "Yes, I want to try them on.", "Let's go shopping together."],
+                    ["I'm happy with you.", "And I'm happy to be with you."]
+                ]
             },
             ru: {
                 enterTelegramId: 'Введите ID Telegram',
@@ -481,8 +483,7 @@
                     ["Брат, ты видел мой рюкзак?", "Да, оставил его в коридоре.", "Нашел, спасибо."],
                     ["Брат, какие у тебя планы на каникулы?", "Хочу поехать к друзьям на дачу.", "Звучит здорово."],
                     ["Брат, можно я воспользуюсь твоим ноутом?", "Ладно, но не устанавливай лишнего софта.", "Понял."],
-                    ["Брат, помнишь нашу игру?", "Конечно, до сих пор держу рекорд.", "Давай сыграем снова!"
-                    ]
+                    ["Брат, помнишь нашу игру?", "Конечно, до сих пор держу рекорд.", "Давай сыграем снова!"]
                 ],
                 sisterConversations: [
                     ["Сестра, ты дома?", "Да, только пришла.", "Что нового?"],
@@ -516,6 +517,8 @@
                 ]
             }
         };
+
+        let previousScreen = null;
 
         function saveData() {
             localStorage.setItem('userData', JSON.stringify(userData));
@@ -852,7 +855,8 @@
             showChatScreen();
         }
 
-        function showSettings() {
+        function showSettings(fromScreen) {
+            previousScreen = fromScreen;
             showScreen('settingsScreen');
             document.getElementById('themeSelect').value = userData.theme;
             document.getElementById('languageSelect').value = userData.language;
@@ -864,7 +868,7 @@
             saveData();
             applyTheme();
             translatePage();
-            backToMain();
+            showScreen(previousScreen);
         }
 
         function applyTheme() {
