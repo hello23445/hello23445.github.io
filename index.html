@@ -36,7 +36,7 @@
                 <h2 class="text-2xl font-bold" data-translate="enterTelegramId">Enter Telegram ID</h2>
                 <button onclick="showSettings('screen1')" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
             </div>
-            <p class="text-center mb-4" data-translate="findTelegramId">You can find out your telegram id here: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a></p>
+            <p class="text-center mb-4" data-translate="findTelegramId" style="color: rgb(255, 0, 0); font-weight: 900;">You can find out your telegram id here: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a></p>
             <input id="telegramId" type="number" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded" onkeypress="return /^[0-9-s-l\- ]$/.test(event.key)" data-translate-placeholder="telegramIdPlaceholder">
             <button id="submitButton" onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Submit</button>
             <div id="codeInput" class="hidden mt-4">
@@ -153,8 +153,8 @@
             <div class="mb-4">
                 <label class="block mb-2" data-translate="language" style="font-weight: bold;">Language:</label>
                 <select id="languageSelect" class="w-full p-2 border rounded">
-                    <option value="en" data-translate="english" selected>English</option>
-                    <option value="ru" data-translate="russian">Russian</option>
+                    <option value="en" data-translate="english">English</option>
+                    <option value="ru" data-translate="russian" selected>Russian</option>
                 </select>
             </div>
             <button onclick="showDeleteDataScreen()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="requestDataDeletion">Request Data Deletion</button>
@@ -253,7 +253,7 @@
             promoCodeCount: 0,
             totalLimitsFromPromos: 0,
             theme: 'light',
-            language: 'en',
+            language: 'ru',
             selectedChatOptions: null,
             chatMessages: {},
             firstLogin: new Date().toISOString(),
@@ -273,7 +273,7 @@
 
         const translations = {
             en: {
-                enterTelegramId: 'Enter Telegram ID',
+                enterTelegramId: 'Enter your Telegram ID',
                 submit: 'Submit',
                 resend: 'Resend',
                 enterCode: 'Enter the 6-digit code sent to you here: ',
@@ -397,7 +397,7 @@
                 ]
             },
             ru: {
-                enterTelegramId: 'Введите ID Telegram',
+                enterTelegramId: 'Введите свой ID Telegram',
                 submit: 'Отправить',
                 resend: 'Отправить заново',
                 enterCode: 'Введите 6-значный код, отправленный в ',
