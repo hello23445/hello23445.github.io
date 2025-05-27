@@ -26,6 +26,7 @@
         body.dark .success { color: #66ff66; }
         body.dark select { color: #f3f4f6; background-color: #555; }
         body.dark input { background-color: #555; color: #f3f4f6; border-color: #666; }
+        a:hover { color: beige; }
     </style>
 </head>
 <body>
@@ -36,7 +37,7 @@
                 <h2 class="text-2xl font-bold" data-translate="enterTelegramId">Enter Telegram ID</h2>
                 <button onclick="showSettings('screen1')" class="bg-gray-500 text-white p-2 rounded btn"><i class="fa-solid fa-gear"></i></button>
             </div>
-            <p class="text-center mb-4" data-translate="findTelegramId" style="color: rgb(255, 0, 0); font-weight: 900;">You can find out your telegram id here: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a></p>
+            <p class="text-center mb-4" id="a3" data-translate="findTelegramId" style="color: rgb(255, 0, 0); font-weight: 900;">You can find out your telegram id here: <a href="https://t.me/my_id_bot" id="a2">@my_id_bot</a></p>
             <input id="telegramId" type="number" placeholder="Your Telegram ID" class="w-full p-2 mb-4 border rounded" onkeypress="return /^[0-9-s-l\- ]$/.test(event.key)" data-translate-placeholder="telegramIdPlaceholder">
             <button id="submitButton" onclick="submitTelegramId()" class="w-full bg-blue-500 text-white p-2 rounded btn" data-translate="submit">Submit</button>
             <div id="codeInput" class="hidden mt-4">
@@ -333,7 +334,7 @@
                 deletionCodeIncorrect: 'Invalid code!',
                 getDeletionCode: 'You can get the deletion code from @Clickerstart_bot',
                 deletionCodePlaceholder: 'Deletion code',
-                findTelegramId: 'You can find out your telegram id here: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a>',
+                findTelegramId: 'You can find out your telegram id here: <a href="https://t.me/my_id_bot" id="a2"><u>@my_id_bot</u></a>',
                 telegramIdPlaceholder: 'Your Telegram ID',
                 momConversations: [
                     ["Hi Mom!", "Hi sweetie! How are you today?"],
@@ -457,7 +458,7 @@
                 deletionCodeIncorrect: 'Неверный код!',
                 getDeletionCode: 'Код удаления можно взять у @Clickerstart_bot',
                 deletionCodePlaceholder: 'Код удаления',
-                findTelegramId: 'Вы можете узнать свой ID Telegram здесь: <a href="https://t.me/my_id_bot" style="color:blue;">@my_id_bot</a>',
+                findTelegramId: 'Вы можете узнать свой ID Telegram здесь: <a href="https://t.me/my_id_bot" id="a2"><u>@my_id_bot</u></a>',
                 telegramIdPlaceholder: 'Ваш Telegram ID',
                 momConversations: [
                     ["Привет, мама!", "Привет, дорогой! Как твои дела сегодня?"],
@@ -878,10 +879,13 @@
         function applyTheme() {
             if (userData.theme === 'dark') {
                 document.body.classList.add('dark');
+                document.querySelector('#a3').style.color = 'white';
             } else {
                 document.body.classList.remove('dark');
+                document.querySelector('#a3').style.color = 'red';
             }
         }
+
 
         function translatePage() {
             const elements = document.querySelectorAll('[data-translate]');
