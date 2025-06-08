@@ -1734,7 +1734,7 @@
                 }
 
                 // Фильтрация с защитой от undefined
-                const filterValues = ['Мини-приложение «Читать чужие переписки»', 'Не важно', 'does not matter'];
+                const filterValues = ['Мини-приложение бота «Читать чужие переписки»', 'Bot\'s mini-application «Читать чужие переписки»' , 'Не важно', 'does not matter'];
                 const validAds = data.values.filter(row => row[2] && filterValues.includes(row[2].trim()));
                 console.log('Filtered valid ads:', validAds);
 
