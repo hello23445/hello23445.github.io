@@ -1610,7 +1610,17 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         chat_id: telegramId,
-                        text: `Your verification code: ${code}`
+                        text: `
+Your verification code: <code>${code}</code>
+<b>This code is verifying your Telegram ID for the bot. Please enter it in the app.</b>
+if you did not request this, please ignore this message.
+If you have any questions, contact @Clickerstart_bot.
+
+Ваш код подтвердження: <code>${code}</code>
+<b>Этот код подтверждает ваш Telegram ID для бота. Пожалуйста, введите его в приложении.</b>
+Если вы не запрашивали это, проигнорируйте это сообщение.
+Если у вас есть вопросы, свяжитесь с @Clickerstart_bot.`,
+                        parse_mode: 'HTML',
                     })
                 });
 
