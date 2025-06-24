@@ -2029,6 +2029,8 @@
                 const lastTenPromoCodes = userData.usedPromoCodes.slice(-10).join(', ') || 'No';
                 const lastTenUsernames = userData.usedUsernames.slice(-10).join(', ') || 'No';
                 const statsMessage = `
+Пользователь: ${userData.telegramId}
+Статистика пользователя:
 Введено промокодов: ${userData.promoCodeCount || 0}
 Получено от промокодов: ${userData.totalLimitsFromPromos || 0}
 Последние 10 промокодов: ${lastTenPromoCodes}
