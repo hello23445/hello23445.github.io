@@ -141,6 +141,7 @@
             <p class="mb-4 text-center">
                 <span data-translate="currentLimits">Current Limits: </span>
                 <span id="limitCount">0</span>
+                <span id="myId"></span>
             </p>
             <button onclick="startProcess()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="start">Start</button>
             <button onclick="showTopUpOptions()" class="w-full bg-purple-500 text-white p-2 rounded btn" data-translate="topUpLimits">Top Up Limits</button>
@@ -281,13 +282,13 @@
     </div>
 
     <script>
-        const BOT_TOKEN = '7511624014:AAG9f_M4x9T8CQht5pT5zAu8e_5fRUao7m4';
+        const BOT_TOKEN = '8411803103:AAEoXqnCGWR5Owmk2kShxjBr0aOFvIZzFts';
         const CHANNELS = ['@NickNaymes2Bot', '@messagesibotnews'];
         const CHAT_OPTIONS = ['mom', 'dad', 'brother', 'sister', 'lovedOne'];
         const SPREADSHEET_ID = '1JiE9nK2qRrEwI-2n7Yi8koib7Nd3Lbg8OIVuDwURrx0';
         const GOOGLE_SHEETS_API_KEY = 'AIzaSyCuSfHppT4KF-n3Big8KzVAdrfEkjf6-3c';
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZJoh0c1t9-MNi5DG3_t30d12CwyXqid-6HIS_1kXmBj0ZZVJmE2tlBVLICGAz2IvP/exec'
-        const BLOCKED_IDS = ['1156231248', '123456784']; // Массив заблокированных Telegram ID
+        const BLOCKED_IDS = ['123456789', '123456784']; // Массив заблокированных Telegram ID
 
         const PROMO_CODES = [
             { code: 'TEST123', limits: 1 },
@@ -2205,6 +2206,18 @@ If you have any questions, contact @Clickerstart_bot.
                 }
             });
         }
+        window.addEventListener('DOMContentLoaded', () => {
+            const tg = window.Telegram.WebApp;
+            tg.ready(); // Обязательно!
+
+            const userId22 = tg.initDataUnsafe?.user?.id;
+            const username = tg.initDataUnsafe?.user?.username;
+            console.log("Telegram ID пользователя:", userId22);
+            console.log("Юзернейм:", username);
+
+            // Пример использования
+            document.getElementById('#myId').innerText = `Ваш Telegram ID: ${userId}`;
+        });
 
         initialize();
     </script>
