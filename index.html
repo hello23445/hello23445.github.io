@@ -2224,7 +2224,7 @@ If you have any questions, contact @Clickerstart_bot.
             }
             const text = userData.telegramId;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Your Telegram ID has been copied to clipboard: " + text + "\n" + "Ваш Telegram ID скопирован в буфер обмена: " + text);
+                alert("Your Telegram ID has been copied to clipboard: " + text + "\n\n" + "Ваш Telegram ID скопирован в буфер обмена: " + text);
             }).catch(err => {
                 console.error("Ошибка копирования: ", err + '\nВыделите ID и скопируйте его вручную.');
             });
