@@ -2100,13 +2100,7 @@ If you have any questions, contact @Clickerstart_bot.
                 showScreen('blockedScreen');
                 return;
             }
-            if (tg.initDataUnsafe?.user?.id){
-                document.getElementById('#setID').textContent = 'Ваш ID: ' + tg.initDataUnsafe?.user?.id   
-            }
-            else {
-                document.getElementById('#setID').textContent = 'Ваш ID: ' + userData.telegramId;
-            }
-            // document.getElementById('#setID').textContent = 'Ваш ID: ' + tg.initDataUnsafe?.user?.id || userData.telegramId;
+            document.getElementById('#setID').textContent = 'Ваш ID: ' + userData.telegramId;
             previousScreen = fromScreen;
             showScreen('settingsScreen');
             document.getElementById('themeSelect').value = userData.theme;
