@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Verification Application</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         #adContainer {
@@ -242,7 +243,7 @@
         <!-- Экран настроек -->
         <div id="settingsScreen" class="screen hidden">
             <h2 class="text-2xl font-bold mb-4 text-center" data-translate="settings">Settings</h2>
-            <h3 id="setID">Your ID:</h3>
+            <h3>Your ID:</h3><button id="setID" style="background-color: black; border-radius: 8%; color: white;" title="Tap to copy your ID"></button>
             <div class="mb-4">
                 <label class="block mb-2" data-translate="theme" style="font-weight: bold;">Theme:</label>
                 <select id="themeSelect" class="w-full p-2 border rounded">
@@ -2100,7 +2101,12 @@ If you have any questions, contact @Clickerstart_bot.
                 showScreen('blockedScreen');
                 return;
             }
-            document.getElementById('#setID').textContent = 'Ваш ID: ' + userData.telegramId;
+            const telegramId = String(userData.telegramId);
+            const hiddenPart = '*'.repeat(4); // четыре звёздочки
+            const result_id = telegramId.slice(0, -6) + hiddenPart + telegramId.slice(-2);
+
+
+            document.getElementById('setID').textContent = result_id + ' (Tap to copy)';
             previousScreen = fromScreen;
             showScreen('settingsScreen');
             document.getElementById('themeSelect').value = userData.theme;
@@ -2211,6 +2217,18 @@ If you have any questions, contact @Clickerstart_bot.
                 }
             });
         }
+        document.getElementById('setID').addEventListener('click', function() {
+            if (BLOCKED_IDS.includes(userData.telegramId)) {
+                showScreen('blockedScreen');
+                return;
+            }
+            const text = userData.telegramId;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Your Telegram ID has been copied to clipboard: " + text + "\n" + "Ваш Telegram ID скопирован в буфер обмена: " + text);
+            }).catch(err => {
+                console.error("Ошибка копирования: ", err + '\nВыделите ID и скопируйте его вручную.');
+            });
+        });
         window.addEventListener('DOMContentLoaded', () => {
             const tg = window.Telegram.WebApp;
             tg.ready(); // Обязательно!
