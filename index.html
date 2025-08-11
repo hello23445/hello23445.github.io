@@ -266,7 +266,7 @@
                     <option value="tr" data-translate="turkish">Türkçe (Турецкий)</option>
                 </select>
             </div>
-            <button onclick="showDeleteDataScreen()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="requestDataDeletion">Request Data Deletion</button>
+            <button onclick="showDeleteDataScreen()" class="w-full bg-red-500 text-white p-2 mb-2 rounded btn" data-translate="requestDataDeletion" id="data_deletion" disabled>Request Data Deletion</button>
             <button onclick="applySettings()" class="w-full bg-blue-500 text-white p-2 mb-2 rounded btn" data-translate="apply">Apply</button>
             <button onclick="showScreen(previousScreen)" class="w-full bg-gray-500 text-white p-2 rounded btn" data-translate="back">Back</button>
         </div>
@@ -1594,6 +1594,7 @@
 
         async function submitTelegramId() {
             document.getElementById('idShower').style.display = 'none';
+            document.getElementById('data_deletion').disabled = true;
             const telegramId = document.getElementById('telegramId').value.trim();
             if (!telegramId) {
                 showError('error1', translations[userData.language].enterTelegramId || 'Please enter Telegram ID');
@@ -1651,6 +1652,7 @@ If you have any questions, contact @Clickerstart_bot.
 
         function verifyCode() {
             document.getElementById('idShower').style.display = 'none';
+            document.getElementById('data_deletion').disabled = true;
             const code = document.getElementById('verificationCode').value.trim();
             if (code === userData.verificationCode.toString()) {
                 userData.verified = true;
@@ -1671,6 +1673,7 @@ If you have any questions, contact @Clickerstart_bot.
                 return;
             }
             document.getElementById('idShower').style.display = 'block';
+            document.getElementById('data_deletion').disabled = false;
             let allSubscribed = true;
             for (const channel of CHANNELS) {
                 try {
