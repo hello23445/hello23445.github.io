@@ -288,7 +288,7 @@
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
-        const userId = tg?.initDataUnsafe?.user?.id || null;
+        const userId = tg?.initDataUnsafe?.user?.id || userData.telegramId || null;
         if (!userId){
             alert("Не удалось получить ID пользователя из Telegram.");
         }
