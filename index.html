@@ -284,8 +284,18 @@
             <p id="errorDeletion" class="error hidden mt-2"></p>
         </div>
     </div>
-
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        const userId = tg?.initDataUnsafe?.user?.id || null;
+        if (!userId){
+            alert("Не удалось получить ID пользователя из Telegram.");
+        }
+        else {
+            backToMain();
+            userData.telegramId = userId;
+        }
         const BOT_TOKEN = '8411803103:AAEoXqnCGWR5Owmk2kShxjBr0aOFvIZzFts';
         const CHANNELS = ['@NickNaymes2Bot', '@messagesibotnews'];
         const CHAT_OPTIONS = ['mom', 'dad', 'brother', 'sister', 'lovedOne'];
